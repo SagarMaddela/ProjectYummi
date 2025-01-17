@@ -1,0 +1,97 @@
+.user-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.user-navbar .logo{
+  height: 1rem;
+  width: 1rem;
+}
+
+.user-navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.user-navbar .user-nav-links {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.user-navbar .user-nav-links li {
+  font-size: 1rem;
+}
+
+.user-navbar .user-nav-links a {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.user-navbar .logout-button {
+  font-size: 1rem;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  list-style: none;
+}
+
+.user-nav-links a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cart-icon, .profile-icon {
+  margin-right: 5px;
+}
+
+.cart-link, .profile-link {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #333;
+}
+
+.cart-link:hover, .profile-link:hover {
+  color: #ff6347; /* Example hover color */
+}
+
+.brand-name {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #ff6347;
+  text-decoration: none;
+}
+
+.profile-button {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.profile-button:hover {
+  color: #ff6347; /* Example hover color */
+}
+
+.profile-icon {
+  margin-right: 5px;
+}
+

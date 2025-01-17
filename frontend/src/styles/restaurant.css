@@ -1,0 +1,127 @@
+/* General page layout */
+.restaurant-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.restaurant-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.restaurant-header h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.restaurant-header p {
+    font-size: 18px;
+    color: #666;
+}
+
+/* Grid layout for restaurant cards */
+.restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    justify-items: center;
+    margin-top: 20px;
+}
+
+/* Individual restaurant card styling */
+.restaurant-card {
+    background-image: url('../assets/card-background.png');
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 320px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    animation: fadeIn 1s ease-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Restaurant logo */
+.restaurant-logo {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Restaurant details */
+.restaurant-card h2 {
+    font-size: 22px;
+    color: #333;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.restaurant-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* View menu link */
+.view-menu-link {
+    font-size: 16px;
+    color: #d70303;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+}
+
+.view-menu-link:hover {
+    color: #ff4500;
+    text-decoration: underline;
+}
+
+.view-menu-link:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.3s ease-in-out;
+}
+
+.view-menu-link:hover:before {
+    left: 100%;
+}
+
+/* Empty state styling */
+.restaurant-grid p {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* General Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

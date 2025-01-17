@@ -1,0 +1,98 @@
+.menu-management-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+    backdrop-filter: blur(8px); /* Blur effect for a glass-like look */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    max-width: 1200px; /* Maximum width for better control */
+    margin: 20px auto; /* Center container with spacing */
+}
+
+.menu-management-container .main-content {
+    width: 100%; /* Limit max width for better readability */
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+ /* Apply blur effect to enhance visual style */
+}
+
+.menu-management-container .main-content h1, .main-content h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: brown; /* Slightly darker heading color */
+    text-transform: uppercase; /* Uppercase for emphasis */
+}
+
+
+.menu-management-container form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+    margin-bottom: 30px;
+   
+}
+
+.menu-management-container label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: brown; /* Highlight field labels */
+}
+
+.menu-management-container input[type="text"],
+.menu-management-container input[type="number"],
+.menu-management-container textarea,
+.menu-management-container input[type="file"],
+.menu-management-container select {
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid brown;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    background:none;
+}
+
+.menu-management-container input[type="text"]:focus,
+.menu-management-container input[type="number"]:focus,
+.menu-management-container textarea:focus {
+    border-color: white; /* Focused border color */
+    outline: none; /* Remove default outline */
+}
+
+.menu-management-container button {
+    padding: 12px;
+    background-color: brown; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.menu-management-container button:hover {
+    background-color: brown; /* Darker shade on hover */
+}
+
+.menu-management-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.menu-management-container li:last-child {
+    border-bottom: none;
+}
+
+.menu-management-container button {
+    margin-left: 10px;
+    padding: 8px 15px; /* Slightly larger buttons for clarity */
+}
+
+
+
+.menu-management-container .current-menu {
+    color: brown;
+    font-size: larger;
+}

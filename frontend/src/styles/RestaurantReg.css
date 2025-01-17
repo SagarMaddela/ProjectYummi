@@ -1,0 +1,135 @@
+/* RestaurantReg.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    overflow-x: hidden;
+    background: #f8f8f7; /* Light food-friendly gradient */
+}
+
+.registerPage {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column;
+    padding: 40px;
+    /* background-color: #fad8ae; */
+    min-height: 100vh; /* Ensure it takes the full height of the viewport */
+    animation: fadeInBg 1.5s ease-in-out;
+    background-color: whitesmoke;
+}
+
+.registerPage h1 {
+    color: black;
+    text-shadow: 0px 0px 10px whitesmoke;
+}
+
+.registerForm {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+    background-color: #fdf2e4;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 70%;
+    max-width: 800px;
+    animation: slideIn 0.8s ease-out;
+}
+
+.registerForm h1 {
+    text-align: center;
+    color: #f26728;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.basicInfo, .locationInfo, .operatingHours, .menuInfo, .brandingInfo, .licensesCertifications, .paymentInfo {
+    margin-bottom: 30px;
+}
+
+.registerForm h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #f26728;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.registerForm label {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.registerForm input, .registerForm textarea, .registerForm select {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+    color: #555;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.registerForm input:focus, .registerForm textarea:focus, .registerForm select:focus {
+    border-color: #f26728;
+    outline: none;
+    box-shadow: 0 0 8px rgba(242, 103, 40, 0.5);
+    background-color: #fff;
+    color: #333;
+}
+
+.registerForm button {
+    background: linear-gradient(135deg, #f26728, #d35400);
+    color: white;
+    padding: 14px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.registerForm button:hover {
+    background: linear-gradient(135deg, #d35400, #a84300);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.menuItem {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fdf2e4;
+}
+
+/* Animations */
+@keyframes fadeInBg {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

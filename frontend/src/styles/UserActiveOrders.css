@@ -1,0 +1,135 @@
+/* General Container Styles */
+.active-orders-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.active-orders-container__title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+/* Loading and Error Messages */
+.loading-message,
+.error-message {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #ff6347;
+  margin: 20px 0;
+}
+
+/* No Orders Message */
+.active-orders-container__no-orders {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+}
+
+/* Orders Card Layout */
+.active-orders-container__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.active-orders-container__card {
+  background: linear-gradient(135deg, #edecec, #b4aea1);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.active-orders-container__card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Header Section */
+.active-orders-container__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.active-orders-container__order-id {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.active-orders-container__cancel-button {
+  background-color: #ff6347;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.active-orders-container__cancel-button:hover {
+  background-color: #e53e3e;
+  transform: scale(1.05);
+}
+
+/* Order Info Section */
+.active-orders-container__info {
+  margin-top: 10px;
+}
+
+.active-orders-container__items-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.active-orders-container__item {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.active-orders-container__details p {
+  font-size: 0.9rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.active-orders-container__restaurant-name,
+.active-orders-container__status,
+.active-orders-container__total {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .active-orders-container__cards {
+      grid-template-columns: 1fr 1fr;
+  }
+
+  .active-orders-container__card {
+      padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .active-orders-container__cards {
+      grid-template-columns: 1fr;
+  }
+
+  .active-orders-container__cancel-button {
+      font-size: 0.8rem;
+  }
+}

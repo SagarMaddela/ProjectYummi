@@ -1,0 +1,86 @@
+/* ResDash.css */
+
+/* Main container styling for the dashboard */
+.resdash-container {
+    display: flex;
+    flex-direction: column; /* Adjust for horizontal layout */
+    height: 100vh; /* Full height of the viewport */
+    overflow: hidden;
+}
+
+/* Navbar container for horizontal layout */
+.horizontal-navbar {
+    width: 50%;
+    height: 60px; /* Adjust the height for a horizontal navbar */
+    background-color: none;
+    display: flex;
+    justify-content: space-around; /* Space links evenly */
+    align-items: center;
+}
+
+/* Navbar menu styles */
+.navbar-menu {
+    display: flex; /* Display menu items horizontally */
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    width: 100%;
+    justify-content: space-around; /* Space items evenly */
+    align-items: center;
+}
+
+/* Navbar link styles */
+.navbar-link {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Hover effect */
+.navbar-link:hover {
+   
+    color: brown;
+}
+
+/* Active link */
+.navbar-link.active {
+    background-color: white;
+    color: orangered;
+}
+
+/* Main content area */
+.resdash-main-content {
+    margin-top: 60px; /* Adjust to the navbar height */
+    padding: 20px;
+    flex-grow: 1;
+    background-color: white;
+    overflow-y: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .horizontal-navbar {
+        height: 50px; /* Reduce navbar height on smaller screens */
+    }
+
+    .navbar-link {
+        font-size: 16px;
+        padding: 8px 10px;
+    }
+
+    .resdash-main-content {
+        margin-top: 50px; /* Adjust for smaller navbar height */
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-link {
+        font-size: 14px;
+        padding: 5px 8px;
+    }
+}

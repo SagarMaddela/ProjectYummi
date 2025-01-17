@@ -1,0 +1,199 @@
+/* Payment Page Styling */
+.payment-container {
+    padding: 30px;
+    max-width: 700px;
+    margin: auto;
+    background: linear-gradient(135deg, #edecec, #ccc7bc);
+    border-radius: 20px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 1s ease-out;
+    position: static;
+}
+
+.payment-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    width:400px;
+    margin-bottom: 20px;
+    color: #3d3d3d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: slideInFromTop 1s ease-out;
+}
+
+.order-summary {
+    margin-bottom: 40px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1s ease-out;
+}
+
+.order-summary-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2d2d2d;
+    text-transform: capitalize;
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom: 5px;
+}
+
+.order-summary-text {
+    font-size: 1rem;
+    margin: 8px 0;
+    font-weight: 500;
+    color: #444;
+    transition: all 0.3s ease-in-out;
+}
+
+.order-summary-text strong {
+    color: #2c3e50;
+}
+
+.order-items {
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.order-items-title {
+    font-size: 1.1rem;
+    margin-bottom: 12px;
+    color: #2d2d2d;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.order-item {
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1rem;
+    color: #555;
+}
+
+.order-item-text {
+    font-size: 1rem;
+    color: #444;
+}
+
+.payment-button {
+    display: block;
+    width: 100%;
+    padding: 18px;
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: background 0.4s ease, transform 0.3s ease;
+}
+
+.payment-button:hover {
+    background: linear-gradient(90deg, #feb47b, #ff7e5f);
+    transform: scale(1.05);
+}
+
+.payment-button:active {
+    transform: scale(1.02);
+}
+
+.payment-button:focus {
+    outline: none;
+}
+
+.payment-loading,
+.payment-error {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-top: 20px;
+    font-family: 'Poppins', sans-serif;
+    color: #e74c3c;
+}
+
+.error-message {
+    color: red;
+    font-size: 1.3rem;
+    margin-top: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInFromTop {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .payment-container {
+        padding: 20px;
+    }
+
+    .payment-title {
+        font-size: 2rem;
+    }
+
+    .order-summary {
+        padding: 15px;
+    }
+
+    .payment-button {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 500px) {
+    .payment-container {
+        padding: 15px;
+    }
+
+    .payment-title {
+        font-size: 1.8rem;
+    }
+
+    .order-summary-title {
+        font-size: 1.4rem;
+    }
+
+    .payment-button {
+        font-size: 1.1rem;
+        padding: 12px;
+    }
+}

@@ -1,0 +1,118 @@
+/* Root Variables */
+:root {
+    --primary-color: #ff6347; /* Vibrant coral */
+    --secondary-color: #f8f9fa; /* Soft white */
+    --text-color: #ffffff; /* White */
+    --text-muted: #bbbbbb; /* Muted gray */
+    --footer-bg: #2e2e2e; /* Dark background */
+    --hover-color: #ffa07a; /* Hover highlight */
+  }
+  
+  /* General Footer Styling */
+  .footer {
+    background-color: var(--footer-bg);
+    color: var(--text-color);
+    padding: 50px 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: start;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .footer h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-transform: uppercase;
+  }
+  
+  /* Logo Section */
+  .footer-logo h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  .footer-logo span {
+    color: var(--secondary-color);
+  }
+  
+  .footer-logo p {
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+  
+  /* Links Section */
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-links a:hover {
+    color: var(--hover-color);
+  }
+  
+  /* Contact Section */
+  .footer-contact p {
+    margin: 10px 0;
+    color: var(--text-muted);
+    font-size: 1rem;
+  }
+  
+  /* Social Media Section */
+  .footer-socials .social-icons {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .footer-socials a {
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+  
+  .footer-socials a:hover {
+    color: var(--hover-color);
+    transform: scale(1.2);
+  }
+  
+  /* Footer Bottom */
+  .footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    border-top: 1px solid var(--text-muted);
+    padding-top: 20px;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .footer-container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .footer-socials .social-icons {
+      justify-content: center;
+    }
+  }
+  

@@ -1,0 +1,136 @@
+/* Login.css */
+.login-body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: whitesmoke; /* Orange background from the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+/* Login Card Container */
+.login-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    max-width: 900px; /* Ensure it adapts well to screen sizes */
+    height: 450px;
+    overflow: hidden;
+    animation: slideIn 0.8s ease-out; /* Smooth card slide-in */
+}
+
+/* Image Section */
+.image-section {
+    flex: 1;
+    background-color: #fffefe; /* Light contrast to highlight the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.image-section img {
+    max-width: 80%;
+    max-height: 90%;
+    object-fit: contain; /* Ensure image fits cleanly */
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for image */
+}
+
+/* Form Section */
+.form-section {
+    flex: 1;
+    padding: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #fdfcfc; /* Light, neutral background */
+}
+
+.form-section h2 {
+    font-size: 28px;
+    color: #f26728;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Elements */
+.form-section form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Consistent spacing between elements */
+    width: 100%;
+}
+
+.form-section input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    font-size: 16px;
+}
+
+.form-section input:focus {
+    border-color: #f26728;
+    outline: none;
+    box-shadow: 0 0 8px rgba(242, 103, 40, 0.4); /* Glow effect */
+    background-color: #fff;
+}
+
+/* Login Button */
+.form-section button {
+    padding: 14px;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(135deg, #f26728, #d35400); /* Gradient button */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle button shadow */
+}
+
+.form-section button:hover {
+    background: linear-gradient(135deg, #d35400, #a84300);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Error Message Styling */
+.error-message {
+    color: red;
+    font-size: 0.875rem;
+    margin-top: -10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeInBg {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

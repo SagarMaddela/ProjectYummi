@@ -1,0 +1,223 @@
+body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .home-page {
+    font-family: Arial, sans-serif;
+    color: white;
+    background-image: url('../assets/background.jpg');
+    background-repeat:no-repeat;
+    background-size: cover;
+  }
+  
+  .header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    height: 5vw;
+  }
+  
+  .logo {
+    margin-top: 5vw;
+    margin-left: 2vw;
+    width: 10vw; 
+    height: 10vw;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden; 
+    z-index: 10;
+  }
+  
+  .logo img {
+    height: 150%;
+    width: 150%;
+    object-fit: contain;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-around;
+    height: 5vw;
+    width: 35vw;
+    align-items: center;
+    margin-right: 5%;
+  }
+  
+  .nav a {
+    text-decoration: none;
+    color: rgb(242, 94, 8);
+    height: 3.2vw;
+    width: 10vw;
+    text-align: center;
+    font-size: 1.2vw;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    align-content:center;
+  }
+  
+  .nav :hover {
+    border-bottom: 3px solid rgb(242, 94, 8);
+  }
+  
+  .Mainbody {
+    height: 45vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .Mainbody h1 {
+    height: 40vw;
+    width: 100vw;
+    margin-left: 5vw;
+    margin-top: 1.5vw;
+    align-content: center;
+    padding-left: 2vw;
+    color: orangered;
+    font-size: 6.5vw;
+    font-family: 'Dancing Script';
+  }
+  
+  
+  .Mainbody-image {
+    height: 45vw;
+    z-index: 10;
+    margin-right: 1vw;
+    width: 100vw;
+  }
+  
+  .Mainbody-image img {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .sub1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .sub1-text {
+    margin-right: 5vw;
+    width: 50vw;
+    font-family: 'Caveat';
+    color: orangered;
+    font-size: 1.5vw;
+    margin-top: 1vw;
+  }
+  
+  .sub1 span {
+    font-size: 2vw;
+  }
+  
+  .sub1 a,.sub2 a {
+    text-decoration: none;
+    color: white;
+    font-size: 2vw;
+    border: 2px solid rgb(242, 94, 8);
+    padding: 1vw;
+    border-radius: 0.7vw;
+    background: linear-gradient(145deg, #da5507, #ff6509);
+    box-shadow:  2px 2px 10px #ac4306,-2px -2px 10px #ff790a;
+  }
+  
+  .sub1 a:hover, .sub2 a:hover {
+    border: 2px solid rgb(242, 94, 8);
+    color: rgb(242, 94, 8);
+    background: none;
+    box-shadow: 0.1vw 0.1vw 0.1vw 0 wheat inset;
+  }
+  
+  .sub1-image {
+    margin-left: 5vw;
+  }
+  
+  .sub2 {
+    display: flex;
+    flex-direction:row-reverse;
+    justify-content: space-between;
+    margin-top: 5vw;
+  }
+  
+  .sub2-text {
+    margin-left: 5vw;
+    width: 50vw;
+    font-family: 'Caveat';
+    color: orangered;
+    font-size:1.5vw;
+    margin-top: 1vw;
+    margin-bottom: 5vw;
+  }
+  
+  .sub2-image {
+    margin-top: -1vw;
+    margin-right: 7vw;
+  }
+  
+  /* Footer Styles with Blur */
+  .footer {
+    background-color: rgba(34, 34, 34, 0.7); /* Dark semi-transparent background */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    backdrop-filter: blur(10px); /* Blurs the background behind the footer */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    height: 18vw;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  
+  .footer-logo img {
+    width: 15vw;
+    height: 15vw;
+    margin-top: -1vw;
+  }
+  
+  .footer-links ul, 
+  .footer-socials ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links ul li, 
+  .footer-socials ul li {
+    margin: 10px 0;
+  }
+  
+  .footer-links ul li a, 
+  .footer-socials ul li a {
+    text-decoration: none;
+    color: #ddd;
+  }
+  
+  .footer-links ul li a:hover, 
+  .footer-socials ul li a:hover {
+    color: orangered;
+  }
+  
+  .footer-contact {
+    text-align: left;
+  }
+  
+  .footer-bottom {
+    padding: 10px 0;
+    backdrop-filter: blur(7px) saturate(0%);
+      -webkit-backdrop-filter: blur(7px) saturate(0%);
+      background-color: rgba(74, 74, 74, 0.75);
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.9em;
+    color: #ddd;
+  }
+  

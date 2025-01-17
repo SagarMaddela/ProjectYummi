@@ -1,0 +1,41 @@
+.restaurant-details {
+    background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+    backdrop-filter: blur(8px); /* Adds a subtle blur to the background */
+    padding: 20px;
+    border-radius: 8px; /* Smooth corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Adds a professional shadow */
+    max-width: 600px;
+    margin: 20px auto; /* Center the section horizontally */
+    color: #333; /* Ensure text is legible */
+}
+
+.restaurant-details h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: brown; /* Slightly darker heading color */
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid brown; /* Accent underline */
+    padding-bottom: 10px;
+}
+
+.restaurant-details img {
+    display: block;
+    width: 100px; /* Adjust logo size */
+    height: 100px;
+    object-fit: cover; /* Ensures image doesn't distort */
+    border-radius: 50%; /* Makes the logo circular */
+    margin: 0 auto 20px auto; /* Center the image */
+    border: 2px solid #f39c12; /* Accent border around logo */
+}
+
+.restaurant-details p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.restaurant-details p strong {
+    color: brown; /* Highlight field labels */
+}

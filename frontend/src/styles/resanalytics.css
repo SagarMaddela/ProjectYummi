@@ -1,0 +1,102 @@
+/* General styles for the analytics page */
+.analytics-page {
+    width: 150vh;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative; /* Ensures the absolute positioning of charts works */
+    margin-left: 20vh;
+}
+
+.analytics-page h1 {
+    color: brown;
+}
+
+/* Card for displaying Total Reviews */
+.analytics-card {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    width: 20vh;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    margin-left: 60vh;
+}
+
+.analytics-card h2 {
+    font-size: 22px;
+    color: brown;
+    
+}
+
+.analytics-card p {
+    font-size: 20px;
+    color: brown; /* Green color for positive stats */
+}
+
+/* Container for the charts at the bottom */
+.chart-container {
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 40%; /* Ensures charts are side by side */
+    height: 50vh;
+}
+
+.chart-container h2 {
+    font-size: 22px;
+    color: brown;
+    margin-bottom: 15px;
+}
+
+.chart-container canvas {
+    width: 100% !important;
+    height: 300px !important; /* Adjust height for better fit */
+}
+
+/* Flexbox layout to position charts at the bottom side by side */
+.charts-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    left: 0;
+    padding: 0 20px;
+}
+
+.charts-wrapper .chart-container {
+    flex: 1;
+    min-width: 300px; /* Ensures a minimum width for responsiveness */
+}
+
+/* Styles for loading and error states */
+.loading, .error {
+    text-align: center;
+    font-size: 18px;
+    color: #ff5733; /* Red color for errors */
+}
+
+/* Styles for smaller devices */
+@media (max-width: 768px) {
+    .charts-wrapper {
+        flex-direction: column; /* Stack the charts on top of each other on smaller screens */
+    }
+
+    .chart-container {
+        margin-bottom: 20px;
+    }
+}
+
+.btm-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

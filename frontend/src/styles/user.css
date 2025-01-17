@@ -1,0 +1,388 @@
+.user-homepage{
+    margin-left:4%;
+    margin-right:5%;
+}
+.user-homepage .user-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+    width: 90vw;
+    background-image: url('../assets/userBackground.webp'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    text-align: center;
+    padding: 20px;
+    color: white;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden; /* To prevent content from overflowing */
+}
+
+/* Add a blurred background */
+.user-homepage .user-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    filter: blur(10px); /* Adjust blur as needed */
+    z-index: -1; /* Keep the blur behind the content */
+}
+
+/* Styling for the heading */
+.user-homepage .user-header h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6); /* Add shadow effect for the heading */
+}
+
+/* Transparent search bar */
+.user-homepage .user-header .search-bar {
+    margin-top:18px;
+    width: 60%; /* Adjust width as needed */
+    max-width: 400px;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    text-align: center;
+    background-color: transparent; /* Semi-transparent background */
+    color: black; /* Text color for visibility */
+    backdrop-filter: blur(5px); /* Adds a subtle blur effect behind the search bar */
+}
+
+.user-homepage .user-header .search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 800px; /* Max width for the search bar */
+    width: 100%;
+}
+
+.user-homepage .user-header .search-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #ff6347; /* Tomato color */
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-homepage .user-header .search-button:hover {
+    background-color: #e5533a; /* Darker tomato color on hover */
+}
+
+.user-homepage .user-header .search-button:focus {
+    outline: none; /* Remove outline on focus */
+}
+/* Featured Items Section */
+.items {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+.items h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Item container */
+.item-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* Item link styles */
+.item-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.item-link:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Circular item image container */
+.circular-item {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 10px;
+    background-color: #f1f1f1;
+}
+
+.item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Item name text */
+.item-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #444;
+}
+
+/* No featured items message */
+.items p {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+}
+
+ 
+/* Reset padding and margin */
+
+
+/* Grid container for restaurants */
+.user-restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
+}
+
+/* Individual restaurant card */
+.user-restaurant-card {
+    background-image: url('../assets/card-background.png');
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 1s ease-out;
+}
+
+
+
+/* Restaurant logo */
+.restaurant-logo {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Restaurant name */
+.user-restaurant-card h2 {
+    font-size: 22px;
+    margin: 15px 0 5px;
+}
+
+/* Restaurant address and rating */
+.user-restaurant-card p {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* View menu link */
+.view-menu-link {
+    font-size: 16px;
+    color: #d70303;
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 10px;
+}
+
+.view-menu-link:hover {
+    text-decoration: underline;
+}
+
+/* Add offer banner */
+.user-restaurant-card .offer {
+    width: 150px;
+    height: 40px;
+    background-color: red;
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Badge design for offer */
+.user-restaurant-card span:before,
+.user-restaurant-card span:after {
+    position: absolute;
+    content: '';
+    background-color: red;
+    height: 30px;
+    width: 17px;
+    top: 20px;
+    left: 0px;
+    border-radius: 10px;
+    z-index: -10;
+}
+
+/* Conditional styling for empty restaurants */
+.user-restaurant-grid p {
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* General Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* User Homepage Animations */
+.user-homepage .user-header {
+    animation: fadeIn 1.5s ease-out;
+}
+
+.user-homepage .user-header .search-bar {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-homepage .user-header .search-bar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Featured Items Section */
+.items {
+    animation: fadeIn 1s ease-in-out;
+}
+
+.item-link {
+    animation: popIn 0.8s ease forwards;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.item-link:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.circular-item {
+    animation: bounce 2s infinite ease-in-out;
+}
+
+/* Restaurant Grid Animations */
+.user-restaurant-card {
+    animation: fadeIn 1.2s ease-out, popIn 0.8s ease-in;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-restaurant-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Offer Banner Animation */
+.user-restaurant-card .offer {
+    animation: bounce 3s infinite ease;
+}
+
+/* Hover Glow Effect */
+.view-menu-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.view-menu-link:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.3s ease-in-out;
+}
+
+.view-menu-link:hover:before {
+    left: 100%;
+}
+
+.view-menu-link:hover {
+    color: #ff4500;
+}
+
+/* Background Pulse Animation */
+.user-restaurant-card:hover .restaurant-logo {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+
+.user-restaurant-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.user-restaurant-card.visible {
+    opacity: 1;
+    transform: translateY(0); /* Move to its final position */
+}

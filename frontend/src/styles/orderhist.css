@@ -1,0 +1,77 @@
+/* General styles for the order history section */
+.order-history {
+    background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+    backdrop-filter: blur(8px); /* Same as the background of restaurant details */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    height: auto;
+    width: 150vh;
+    margin-left: 20vh;
+}
+
+.order-history h2 {
+    color: brown;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Table styles */
+.MuiTable-root {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.MuiTableCell-root {
+    font-size: 16px;
+    padding: 10px 15px;
+    text-align: left;
+    color: brown; /* Text color */
+}
+
+/* Hover effect on table rows */
+.MuiTableRow-root:hover {
+    /* Light hover background */
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Status dropdown styling */
+.MuiSelect-root {
+    border: 1px solid brown;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #f7f7f7;
+    transition: all 0.3s ease;
+    color: brown; /* Text color */
+}
+
+.MuiSelect-root:hover {
+    border-color: #ff8c00; /* Add a slight orange hover effect */
+}
+
+/* Table cell for items */
+.MuiTableCell-root ul {
+    padding-left: 20px;
+    color: brown; /* Text color */
+}
+
+.MuiTableCell-root li {
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: brown; /* Text color */
+}
+
+/* Loading and error states */
+.order-history p {
+    color: brown; /* Text color for messages */
+    font-size: 18px;
+    text-align: center;
+}
+
+/* Styling for the "No orders yet" message */
+.order-history p {
+    font-size: 16px;
+    color: brown; /* Text color */
+}

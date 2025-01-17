@@ -1,0 +1,207 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* Main dashboard container with background image */
+.resdash-container {
+    width: 100%; /* Full width of the screen */
+    min-height: 100vh; /* Ensures it covers the full viewport height */
+    background-image: url('../assets/pic1.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensure the image covers the entire container */
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative; /* Needed for overlay effects */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+    display: flex;
+    flex-direction: column; /* Ensure child elements stack vertically */
+    animation: fadeIn 1.5s ease-in-out; /* Fade-in effect */
+}
+
+
+/* Overlay effect for subtle dimming */
+.resdash-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Semi-transparent overlay */
+    border-radius: 8px;
+    z-index: 1; /* Ensure overlay is above the background */
+}
+
+/* Content within the container */
+.res-main {
+    width: auto;
+    position: relative;
+    z-index: 2; /* Ensure content is above the overlay */
+}
+
+/* Header for the dashboard */
+.resdash-header {
+    padding-top: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    color: white;
+    background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+    backdrop-filter: blur(8px); /* Background blur effect */
+    animation: fallFromTop 1.5s ease-out; /* Falling effect */
+}
+
+/* Falling from top animation */
+@keyframes fallFromTop {
+    0% {
+        transform: translateY(-100px); /* Start above the viewport */
+        opacity: 0; /* Fully transparent */
+    }
+    100% {
+        transform: translateY(0); /* End at the original position */
+        opacity: 1; /* Fully visible */
+    }
+}
+
+.resdash-header h1 {
+    font-size: 24px;
+    color: white;
+}
+
+.resdash-logout-btn {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.resdash-logout-btn:hover {
+    background-color: #c0392b;
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+
+/* Navbar styling */
+.resdash-navbar {
+    background-color: #3498db;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+.resdash-navbar ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.resdash-navbar ul li {
+    display: inline;
+}
+
+.resdash-navbar ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.resdash-navbar ul li a:hover {
+    background-color: #2980b9;
+}
+
+/* Unique styles for each page component */
+.resdash-details, .resdash-menu-management, .resdash-order-history, .resdash-analytics, .resdash-reviews {
+    padding: 20px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    margin-top: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 1.2s ease; /* Fade-in from bottom effect */
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Loading and error messages */
+.resdash-loading, .resdash-error {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+}
+
+.resdash-error {
+    color: #e74c3c;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .resdash-container {
+        padding: 10px;
+    }
+
+    .resdash-header h1 {
+        font-size: 18px;
+    }
+
+    .resdash-navbar ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .resdash-navbar ul li a {
+        padding: 8px 15px;
+    }
+
+    .resdash-logout-btn {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+}
