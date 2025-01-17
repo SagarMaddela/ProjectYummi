@@ -10,5 +10,6 @@ router.get('/menu', authenticateToken, cartController.getCartItems); // GET rout
 router.delete('/delete/:itemId',authenticateToken,cartController.deleteCartItem);
 router.post('/orders', authenticateToken, cartController.order);
 router.post('/payments', authenticateToken, cartController.payments);
+router.put('/updatequantity/:itemId',authenticateToken,cartController.updateCartItem);
 
 module.exports = router;

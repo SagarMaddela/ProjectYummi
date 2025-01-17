@@ -20,6 +20,7 @@ const restaurantSchema = new mongoose.Schema({
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
     role: { type: String, default: 'restaurant' },
     status : { type: String, default: 'pending'},
+    user : [{type:mongoose.Schema.Types.ObjectId, ref : "User" }]
 }, { timestamps: true });
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);

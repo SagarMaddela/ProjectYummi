@@ -14,6 +14,7 @@ const storage = multer.diskStorage({
     }
 });
 
+
 // Initialize upload
 const upload = multer({ storage: storage });
 
@@ -23,7 +24,13 @@ router.post('/registerForm',upload.fields([
     { name: 'foodLicense' },
     { name: 'healthCertification' },
     { name: 'menuItems[0][image]', maxCount: 1 },
-    { name: 'menuItems[1][image]', maxCount: 1 }
+    { name: 'menuItems[1][image]', maxCount: 1 },
+    { name: 'menuItems[2][image]', maxCount: 1 },
+    { name: 'menuItems[3][image]', maxCount: 1 },
+    { name: 'menuItems[4][image]', maxCount: 1 },
+    { name: 'menuItems[5][image]', maxCount: 1 }
+
+
   ]), restaurantControllers.createRestaurant);
 
   const restaurantOnly = (req, res, next) => {
@@ -39,4 +46,8 @@ router.post('/menu/update/:id', upload.single('image') ,authenticateToken,restau
 router.post('/menu/delete/:id', authenticateToken ,restaurantControllers.deleteMenuItem);
 router.get('/orders',authenticateToken,restaurantControllers.getRestaurantOrders);
 router.put('/orders/:orderId/status', restaurantControllers.updateOrderStatus);
+router.get('/analytics', authenticateToken, restaurantControllers.analytics);
+router.get('/reviews', authenticateToken, restaurantControllers.reviews);
+
+
 module.exports = router;

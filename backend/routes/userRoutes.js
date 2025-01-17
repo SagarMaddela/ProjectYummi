@@ -7,10 +7,13 @@ router.get('/userrestaurants' , userController.renderUserRestaurants);
 router.get('/:id/menu',userController.getRestaurantMenuItems);
 router.get('/getUser',authenticateToken, userController.getUserInformation);
 router.get('/orderhistory', authenticateToken, userController.getOrderHistory);
-router.get('/activeorders', userController.getActiveOrders);
+router.get('/activeorders', authenticateToken, userController.getActiveOrders);
 router.patch('/cancelorder/:orderId', userController.cancelOrder);
 router.get('/getprofile',authenticateToken,userController.getUserProfile);
 router.put('/updateprofile',authenticateToken,userController.updateUserProfile);
 router.put('/submitreview',authenticateToken,userController.review);
+router.put('/updatequantity',authenticateToken,userController.updateCartItemQuantity);
+router.delete('/deleteorder/:orderId', userController.deleteOrder);
+
 
 module.exports = router;

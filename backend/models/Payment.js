@@ -7,6 +7,7 @@ const PaymentSchema = new mongoose.Schema({
     paymentMethod: { type: String, required: true },
     transactionId: { type: String, required: true },
     paymentStatus: { type: String, enum: ['completed', 'failed'], required: true },
+    deliveryAddress : {type: String}
 }, { timestamps: true });
 
 module.exports = mongoose.model('Payment', PaymentSchema);

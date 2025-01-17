@@ -212,3 +212,32 @@ exports.payments = async (req, res) => {
 };
 
 
+exports.updateCartItem = async (req, res) => {
+    try {
+        const itemId = req.params.itemId; // Directly access itemId from req.params
+        console.log("Received itemId as:", itemId); // Should log itemId as a string
+
+        // Find the user's cart and populate itemId with data from the MenuItem collection
+        let cart = await Cart.findOne({ userId: req.user.userId }).populate('items.itemId');
+        if (!cart) return res.status(404).json({ message: 'Cart not found' });
+
+        // Find the index of the item in cart by comparing itemId strings
+        const itemIndex = cart.items.findIndex((item) => item.itemId._id.toString() === itemId);
+        if (itemIndex === -1) return res.status(404).json({ message: 'Item not found in cart' });
+
+        // Decrease quantity or remove item
+        if (cart.items[itemIndex].quantity >= 1) {
+            cart.items[itemIndex].quantity += 1;
+        } 
+
+        // Recalculate the total amount
+        cart.totalAmount = cart.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
+        // Save the updated cart
+        await cart.save();
+        res.json(cart);
+    } catch (err) {
+        console.error('Error deleting cart item:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};

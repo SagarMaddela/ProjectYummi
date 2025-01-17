@@ -8,7 +8,7 @@ const Review = require('../models/Review');
 exports.renderUserRestaurants = async (req, res) => {
   try {
       // Fetch restaurants with accepted status and populate reviews
-      const restaurants = await Restaurant.find({ status: "Accepted" })
+      const restaurants = await Restaurant.find({ status: "Accepted" }).populate('menuItems')
           .populate({
               path: 'reviews',
               populate: [
@@ -123,7 +123,7 @@ exports.deleteCartItem = async (req, res) => {
 
 
 exports.payments = async (req, res) => {
-    const { orderId, userId, amount, paymentMethod, transactionId, paymentStatus } = req.body;
+    const { orderId, userId, amount, paymentMethod, transactionId, paymentStatus, deliveryAddress } = req.body;
 
     try {
         // Create a new payment record (optional)
@@ -134,6 +134,7 @@ exports.payments = async (req, res) => {
             paymentMethod,
             transactionId,
             paymentStatus,
+            deliveryAddress
         });
 
         const savedPayment = await newPayment.save();
@@ -176,7 +177,8 @@ exports.getUserInformation = async (req, res) => {
       const orders = await Order.find({ user: req.user.userId })
         .populate('items.menuItem')  // Populate menu items (use the correct reference)
         .populate('restaurant')  // Populate the restaurant info
-        .populate('user', 'name email'); // Populate user details (only name and email)
+        .populate('user', 'name email')
+        .populate('review'); // Populate user details (only name and email)
   
       console.log(req.user.userId);
       if (!orders || orders.length === 0) {
@@ -193,7 +195,8 @@ exports.getUserInformation = async (req, res) => {
 
   exports.getActiveOrders = async (req, res) => {
     try {
-      const activeOrders = await Order.find({ status: { $in: ['pending', 'in-progress'] } })
+        console.log(req.user.userId);
+      const activeOrders = await Order.find({ status: { $in: ['Pending'] } , user: req.user.userId  })
       .populate('items.menuItem')  // Populate menu items (use the correct reference)
       .populate('restaurant')  // Populate the restaurant info
       .populate('user', 'name email');
@@ -227,6 +230,37 @@ exports.cancelOrder = async (req, res) => {
     }
   };
 
+  exports.deleteOrder = async (req, res) => {
+    const { orderId } = req.params; // Assuming orderId is passed as a parameter
+  
+    try {
+      const updatedOrder = await Order.findByIdAndDelete(
+        orderId,
+        { new: true }
+      );
+  
+      if (!updatedOrder) {
+        return res.status(404).json({ message: "Order not found" });
+      }
+  
+      res.status(200).json({ message: "Order Deleted", order: updatedOrder });
+    } catch (error) {
+      console.error("Error cancelling order:", error);
+      res.status(500).json({ message: "Error cancelling order", error: error.message });
+    }
+  };
+
+
+exports.deleteOrder = async (req,res) =>{
+    try{
+        const {orderId} = req.params;
+        const response = req.user.userId;
+        const deleteOrder = await Order.findByIdAndDelete({orderId});
+        res.status(200).json(deleteOrder);
+    }catch{
+
+    }
+}
 // Get User Profile
 exports.getUserProfile = async (req, res) => {
     try {
@@ -289,76 +323,122 @@ exports.updateUserProfile = async (req, res) => {
 
 
 exports.review = async (req, res) => {
-  const { orderId, rating, reviewText, images } = req.body;
+    const { orderId, rating, reviewText, images } = req.body;
+  
+    console.log(orderId, rating);
+    if (!orderId || !rating) {
+        return res.status(400).json({ error: 'Order ID and rating are required.' });
+    }
+  
+    try {
+        // Find the order with populated fields
+        const order = await Order.findById(orderId).populate('user').populate('items.menuItem').populate('restaurant');
+  
+        if (!order) {
+            return res.status(404).json({ error: 'Order not found.' });
+        }
+  
+        // Ensure the logged-in user owns the order
+        if (order.user._id.toString() !== req.user.userId) {
+            return res.status(403).json({ error: 'You can only review your own orders.' });
+        }
+  
+        // Check if a review already exists for this order
+        if (order.review) {
+            return res.status(400).json({ error: 'Review already submitted for this order.' });
+        }
+  
+        // Fetch the restaurant document for reviews
+        const restaurant = await Restaurant.findById(order.restaurant._id);
+        if (!restaurant) {
+            return res.status(404).json({ error: 'Restaurant not found.' });
+        }
+  
+        // Create a new review
+        const review = new Review({
+            user: req.user.userId,
+            restaurant: order.restaurant._id,
+            order: order._id,
+            reviewText: reviewText || '', // Optional review text
+            rating,
+            images: images || [], // Optional images
+        });
+  
+        await review.save();
+  
+        // Add the review to the restaurant's reviews array
+        restaurant.reviews.push(review._id);
+        await restaurant.save();
+  
+        // Update each menu item's average rating
+        const menuItems = order.items.map((item) => item.menuItem);
+        for (let menuItem of menuItems) {
+            const menu = await MenuItem.findById(menuItem._id);
+  
+            if (menu) {
+                // Check if the category is missing or invalid
+                if (!menu.category) {
+                    console.warn(`MenuItem ${menu._id} is missing category. Skipping rating update.`);
+                    continue; // Skip updating this menu item if category is missing
+                }
+  
+                const totalRatings = menu.totalRatings || 0;
+                const currentRating = menu.averageRating || 0;
+  
+                menu.averageRating = ((currentRating * totalRatings) + rating) / (totalRatings + 1);
+                menu.totalRatings = totalRatings + 1;
+  
+                await menu.save();
+            }
+        }
+  
+        // Link the review to the order
+        order.review = review._id;
+        await order.save();
+  
+        res.status(201).json({ message: 'Review submitted successfully.', review });
+    } catch (err) {
+        console.error('Error submitting review:', err);
+        res.status(500).json({ error: 'Internal server error.' });
+    }
+  };
 
-  console.log(orderId, rating);
-  if (!orderId || !rating) {
-      return res.status(400).json({ error: 'Order ID and rating are required.' });
-  }
-
-  try {
-      // Find the order with populated fields
-      const order = await Order.findById(orderId).populate('user').populate('items.menuItem').populate('restaurant');
-
-      if (!order) {
-          return res.status(404).json({ error: 'Order not found.' });
+  
+  
+  // Update quantity of an item in the cart
+  exports.updateCartItemQuantity = async (req, res) => {
+      const { itemId, quantity } = req.body; // Getting itemId and quantity from request body
+      const { userId } = req; // Assuming userId is extracted from the token middleware
+  
+      if (!itemId || quantity <= 0) {
+          return res.status(400).json({ message: 'Invalid itemId or quantity' });
       }
-
-      // Ensure the logged-in user owns the order
-      if (order.user._id.toString() !== req.user.userId) {
-          return res.status(403).json({ error: 'You can only review your own orders.' });
-      }
-
-      // Check if a review already exists for this order
-      if (order.review) {
-          return res.status(400).json({ error: 'Review already submitted for this order.' });
-      }
-
-      // Fetch the restaurant document for reviews
-      const restaurant = await Restaurant.findById(order.restaurant._id);
-      if (!restaurant) {
-          return res.status(404).json({ error: 'Restaurant not found.' });
-      }
-
-      // Create a new review
-      const review = new Review({
-          user: req.user.userId,
-          restaurant: order.restaurant._id,
-          order: order._id,
-          reviewText: reviewText || '', // Optional review text
-          rating,
-          images: images || [], // Optional images
-      });
-
-      await review.save();
-
-      // Add the review to the restaurant's reviews array
-      restaurant.reviews.push(review._id);
-      await restaurant.save();
-
-      // Update each menu item's average rating
-      const menuItems = order.items.map((item) => item.menuItem);
-      for (let menuItem of menuItems) {
-          const menu = await MenuItem.findById(menuItem._id);
-
-          if (menu) {
-              const totalRatings = menu.totalRatings || 0;
-              const currentRating = menu.averageRating || 0;
-
-              menu.averageRating = ((currentRating * totalRatings) + rating) / (totalRatings + 1);
-              menu.totalRatings = totalRatings + 1;
-
-              await menu.save();
+  
+      try {
+          const cart = await Cart.findOne({ userId });
+          if (!cart) {
+              return res.status(404).json({ message: 'Cart not found' });
           }
+  
+          // Find the item in the cart and update the quantity
+          const cartItem = cart.items.find(item => item.itemId.toString() === itemId);
+          if (!cartItem) {
+              return res.status(404).json({ message: 'Item not found in cart' });
+          }
+  
+          // Update the item quantity
+          cartItem.quantity = quantity;
+  
+          // Recalculate the totalAmount
+          cart.totalAmount = cart.items.reduce((acc, item) => acc + item.quantity * item.price, 0);
+  
+          // Save the updated cart
+          await cart.save();
+  
+          res.json(cart); // Return the updated cart
+      } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Error updating cart item' });
       }
-
-      // Link the review to the order
-      order.review = review._id;
-      await order.save();
-
-      res.status(201).json({ message: 'Review submitted successfully.', review });
-  } catch (err) {
-      console.error('Error submitting review:', err);
-      res.status(500).json({ error: 'Internal server error.' });
-  }
-};
+  };
+  

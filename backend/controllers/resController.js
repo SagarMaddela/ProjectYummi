@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const MenuItem = require('../models/MenuItem');
 const Order = require('../models/Order');
+const Review = require('../models/Review');
+
 exports.createRestaurant = async (req, res) => {
     try {
       const {
@@ -275,5 +277,60 @@ exports.updateOrderStatus = async (req, res) => {
         res.json(updatedOrder);
     } catch (error) {
         res.status(500).json({ message: 'Server Error', error: error.message });
+    }
+};
+
+
+// In your backend routes
+exports.analytics =  async (req, res) => {
+
+    console.log('12345');
+    const restaurantId = req.user.userId;
+
+    try {
+        const restaurant = await Restaurant.findById(restaurantId)
+            .populate('reviews')
+            .populate('menuItems'); // Assuming `menuItems` is an array of MenuItem references
+
+        if (!restaurant) {
+            return res.status(404).json({ error: 'Restaurant not found.' });
+        }
+
+        const totalReviews = restaurant.reviews.length;
+        const averageRating =
+            restaurant.reviews.reduce((acc, review) => acc + review.rating, 0) / totalReviews || 0;
+
+        const popularItems = await MenuItem.find({ restaurant: restaurantId })
+            .sort({ totalRatings: -1 })
+            .limit(5)
+            .select('name totalRatings');
+
+        res.json({
+            totalReviews,
+            averageRating,
+            popularItems,
+        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to fetch analytics data.' });
+    }
+};
+
+
+exports.reviews = async (req, res) => {
+    const restaurantId = req.user.userId; // Ensure this is correctly retrieved
+    
+    try {
+        // Fetch reviews for the given restaurant
+        const reviews = await Review.find({ restaurant: restaurantId }).populate('user', 'username email');
+
+        if (reviews.length === 0) {
+            return res.status(404).json({ error: 'No reviews found for this restaurant.' });
+        }
+
+        res.status(200).json(reviews);
+    } catch (err) {
+        console.error('Error fetching reviews:', err);
+        res.status(500).json({ error: 'Failed to fetch reviews.' });
     }
 };
