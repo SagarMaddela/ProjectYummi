@@ -4,7 +4,7 @@ Project Title: Project Yummy (Food Ordering Website)
 Group Members:
 S20220010094 - K. Bhargav Reddy  
 S20220010175 - P. Kowshik  
-S20220010129 - M. V. R. Sagar  
+S20220010129 - M. Venkata Sagar  
 S20220010077 - G. V. M. Harish  
 S20220010047 - C. Sri Charan  
 
