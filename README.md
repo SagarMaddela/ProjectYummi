@@ -1,8 +1,5 @@
-<<<<<<< HEAD
-=======
-# ProjectYummi
 
->>>>>>> 047afac1a8f04762b1377fe697301f97d655c269
+# ProjectYummi
 # Food Ordering Platform
 
 This project is a full-stack Food Ordering Platform, developed with a React.js frontend and a Node.js/Express.js backend. The application facilitates user-friendly online food ordering, providing a seamless experience for both customers and administrators.
