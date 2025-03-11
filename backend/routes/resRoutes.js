@@ -39,6 +39,7 @@ router.post('/registerForm',upload.fields([
     }
     next();
 };
+
 router.get('/restaurantDash', authenticateToken, restaurantOnly, restaurantControllers.renderDashboard);
 router.get('/menu', authenticateToken, restaurantControllers.renderMenuManagement);
 router.post('/menu/add', upload.single('image'), authenticateToken, restaurantControllers.addMenuItem);

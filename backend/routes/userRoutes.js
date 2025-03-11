@@ -13,7 +13,7 @@ router.get('/getprofile',authenticateToken,userController.getUserProfile);
 router.put('/updateprofile',authenticateToken,userController.updateUserProfile);
 router.put('/submitreview',authenticateToken,userController.review);
 router.put('/updatequantity',authenticateToken,userController.updateCartItemQuantity);
-router.delete('/deleteorder/:orderId', userController.deleteOrder);
+router.delete('/deleteorder/:orderId',authenticateToken, userController.deleteOrder);
 
 
 module.exports = router;

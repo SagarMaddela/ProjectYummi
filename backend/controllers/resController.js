@@ -249,7 +249,7 @@ exports.getRestaurantOrders = async (req, res) => {
                 select: 'name price',
             });
 
-        console.log(orders);
+        // console.log(orders);
         
         res.json(orders); // Send the orders back in the response
     } catch (error) {

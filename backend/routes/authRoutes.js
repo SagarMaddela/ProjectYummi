@@ -2,6 +2,9 @@ const express = require('express');
 const { signup, login, AdminRestaurant, getOrders,deleteRestaurant, getAllUsers, deleteUser ,status,getAdminDashboardStats} = require('../controllers/authController');
 const router = express.Router();
 const authenticateToken = require('../middleware/authenticateToken');
+const authLimiter = require('../middleware/rateLimitMiddleware');
+
+router.use(authLimiter); 
 
 router.post('/signup', signup);  // Define POST route for signup
 router.post('/login', login); 
@@ -16,3 +19,4 @@ router.get('/adminDashboard', getAdminDashboardStats);
 router.get('/orders',getOrders);
 // Define POST route for login
 module.exports = router;
+
