@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getRestaurantMenu, addMenuItems, UpdateMenuItem, DeleteMenuItem } from '../../services/api';
 import '../../styles/ResMenuManagement.css';
+
 const MenuManagement = () => {
     const [menuItems, setMenuItems] = useState([]);
     const [newItem, setNewItem] = useState({
@@ -196,7 +197,6 @@ const MenuManagement = () => {
                     <label>Description:</label>
                     <textarea name="description" value={isEditing ? editItem.description : newItem.description} onChange={handleChange} required />
 
-                    <label>Food Type:</label>
                     <label>Food Type:</label>
                     <select name="foodType" value={isEditing ? editItem.foodType : newItem.foodType} onChange={handleChange} required>
                         <option value="" disabled>Select a Category</option>

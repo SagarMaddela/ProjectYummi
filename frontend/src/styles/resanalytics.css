@@ -1,5 +1,5 @@
 /* General styles for the analytics page */
-.analytics-page {
+.res-analytics-page {
     width: 150vh;
     min-height: 85vh;
     display: flex;
@@ -9,12 +9,12 @@
     margin-left: 20vh;
 }
 
-.analytics-page h1 {
+.res-analytics-page h1 {
     color: brown;
 }
 
 /* Card for displaying Total Reviews */
-.analytics-card {
+.res-analytics-card {
     padding: 20px;
     background: rgba(0, 0, 0, 0.6);
     width: 20vh;
@@ -26,19 +26,19 @@
     margin-left: 60vh;
 }
 
-.analytics-card h2 {
+.res-analytics-card h2 {
     font-size: 22px;
     color: brown;
     
 }
 
-.analytics-card p {
+.res-analytics-card p {
     font-size: 20px;
     color: brown; /* Green color for positive stats */
 }
 
 /* Container for the charts at the bottom */
-.chart-container {
+.res-chart-container {
     padding: 20px;
     background: rgba(0, 0, 0, 0.6);
     background: rgba(0, 0, 0, 0.6);
@@ -49,13 +49,13 @@
     height: 50vh;
 }
 
-.chart-container h2 {
+.res-chart-container h2 {
     font-size: 22px;
     color: brown;
     margin-bottom: 15px;
 }
 
-.chart-container canvas {
+.res-chart-container canvas {
     width: 100% !important;
     height: 300px !important; /* Adjust height for better fit */
 }
@@ -72,7 +72,7 @@
     padding: 0 20px;
 }
 
-.charts-wrapper .chart-container {
+.charts-wrapper .res-chart-container {
     flex: 1;
     min-width: 300px; /* Ensures a minimum width for responsiveness */
 }
@@ -95,7 +95,7 @@
     }
 }
 
-.btm-container {
+.res-btm-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

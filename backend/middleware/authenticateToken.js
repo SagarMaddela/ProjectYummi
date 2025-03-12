@@ -10,7 +10,7 @@ const authenticateToken = (req, res, next) => {
         return res.status(401).json({ message: 'No token, authorization denied' });
     }
 
-    const token = authHeader.split('')[1];  // Extract token from the 'Bearer <token>' format
+    const token = authHeader.split(' ')[1];  // Extract token from the 'Bearer <token>' format
 
     try {
         const secretKey = process.env.JWT_SECRET; // Use environment variable for secret key

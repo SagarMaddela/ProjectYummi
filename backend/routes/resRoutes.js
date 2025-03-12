@@ -40,6 +40,129 @@ router.post('/registerForm',upload.fields([
     next();
 };
 
+/**
+ * @swagger
+ * tags:
+ *   name: Restaurants
+ *   description: Restaurant management APIs
+ */
+
+
+/**
+ * @swagger
+ * /restaurant/restaurantDash:
+ *   get:
+ *     summary: Get restaurant dashboard
+ *     tags: [Restaurants]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Restaurant dashboard data
+ *       403:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /restaurant/menu:
+ *   get:
+ *     summary: Get restaurant menu
+ *     tags: [Restaurants]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of menu items
+ *       403:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /restaurant/menu/delete/{id}:
+ *   post:
+ *     summary: Delete a menu item
+ *     tags: [Restaurants]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Menu item ID
+ *     responses:
+ *       200:
+ *         description: Menu item deleted successfully
+ *       403:
+ *         description: Unauthorized
+ *       404:
+ *         description: Menu item not found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /restaurant/orders:
+ *   get:
+ *     summary: Get restaurant orders
+ *     tags: [Restaurants]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of orders
+ *       403:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
+/**
+ * @swagger
+ * /restaurant/analytics:
+ *   get:
+ *     summary: Get restaurant analytics
+ *     tags: [Restaurants]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Analytics data
+ *       403:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal Server Error
+ */
+
+/**
+ * @swagger
+ * /restaurant/reviews:
+ *   get:
+ *     summary: Get restaurant reviews
+ *     tags: [Restaurants]
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of reviews
+ *       403:
+ *         description: Unauthorized
+ *       404:
+ *         description: No reviews found
+ *       500:
+ *         description: Internal Server Error
+ */
+
+
 router.get('/restaurantDash', authenticateToken, restaurantOnly, restaurantControllers.renderDashboard);
 router.get('/menu', authenticateToken, restaurantControllers.renderMenuManagement);
 router.post('/menu/add', upload.single('image'), authenticateToken, restaurantControllers.addMenuItem);

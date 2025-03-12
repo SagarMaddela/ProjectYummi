@@ -9,9 +9,11 @@ const cartRoutes = require('./routes/cartRoutes');
 const requestLogger = require('./middleware/Logger');
 const { errorHandler, routenotFoundHandler } = require('./middleware/errorHandler'); 
 const morgan = require('morgan');
+const swaggerDocs = require('./config/swagger');
 
 
 const app = express();
+swaggerDocs(app);
 
 connectDB();
 

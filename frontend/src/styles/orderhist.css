@@ -15,6 +15,7 @@
     color: brown;
     font-size: 24px;
     margin-bottom: 20px;
+    
 }
 
 /* Table styles */
@@ -27,7 +28,8 @@
     font-size: 16px;
     padding: 10px 15px;
     text-align: left;
-    color: brown; /* Text color */
+    color: black; /* Text color */
+    background-color: brown;
 }
 
 /* Hover effect on table rows */
@@ -35,6 +37,7 @@
     /* Light hover background */
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+    
 }
 
 /* Status dropdown styling */
@@ -54,13 +57,13 @@
 /* Table cell for items */
 .MuiTableCell-root ul {
     padding-left: 20px;
-    color: brown; /* Text color */
+   color: black; /* Text color */
 }
 
 .MuiTableCell-root li {
     margin-bottom: 5px;
     font-size: 14px;
-    color: brown; /* Text color */
+    color: black; /* Text color */
 }
 
 /* Loading and error states */

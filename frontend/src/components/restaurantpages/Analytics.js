@@ -29,6 +29,7 @@ const AnalyticsPage = ({ restaurantId }) => {
     if (error) return <div>Error: {error}</div>;
 
     const { totalReviews, averageRating, popularItems } = analyticsData;
+    console.log( popularItems);
 
     // Bar chart data for popular items
     const barChartData = {
@@ -54,20 +55,20 @@ const AnalyticsPage = ({ restaurantId }) => {
     };
 
     return (
-        <div className="analytics-page">
+        <div className="res-analytics-page">
             <h1>Restaurant Analytics</h1>
 
-            <div className="analytics-card">
+            <div className="res-analytics-card">
                 <h2>Total Reviews</h2>
                 <p>{totalReviews}</p>
             </div>
-            <div className='btm-container'>
-            <div className="chart-container">
+            <div className='res-btm-container'>
+            <div className="res-chart-container">
                 <h2>Average Rating</h2>
                 <Doughnut data={doughnutChartData} />
             </div>
 
-            <div className="chart-container">
+            <div className="res-chart-container">
                 <h2>Popular Menu Items</h2>
                 <Bar data={barChartData} />
             </div>
