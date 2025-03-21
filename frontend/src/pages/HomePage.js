@@ -68,6 +68,8 @@ const HomePage = () => {
               <p>Email: support@yummykitchen.com</p>
               <p>Phone: +123 456 7890</p>
               <p>Address: 123 Yummy St, Food City</p>
+              <button>Contact Us</button>
+              <button>Support</button>
             </div>
             <div className="footer-socials">
               <h3>Follow Us</h3>
