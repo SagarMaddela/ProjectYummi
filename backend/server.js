@@ -16,7 +16,12 @@ require('dotenv').config();
 const app = express();
 swaggerDocs(app);
 
-connectDB();
+// connectDB();
+
+// Connect to DB (Skip in test environment)
+if (process.env.NODE_ENV !== 'test') {
+    connectDB();
+}
 
 app.use(cors({
    origin: 'http://localhost:3000',
@@ -40,6 +45,10 @@ app.use('/api/restaurant', restaurantRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/cart',cartRoutes);
 
+
+// Health check
+app.get('/health', (req, res) => res.status(200).json({ status: 'OK' }));
+
 app.get("/test-error", (req, res, next) => {
     const err = new Error("This is a test error!");
     err.status = 500;
@@ -51,7 +60,15 @@ app.get("/test-error", (req, res, next) => {
 app.use(routenotFoundHandler); 
 app.use(errorHandler);  
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// const PORT = process.env.PORT || 5000;
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}`);
+// });
+
+// Start server only if not in test environment
+if (process.env.NODE_ENV !== 'test') {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+}
