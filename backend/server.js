@@ -10,6 +10,7 @@ const requestLogger = require('./middleware/Logger');
 const { errorHandler, routenotFoundHandler } = require('./middleware/errorHandler'); 
 const morgan = require('morgan');
 const swaggerDocs = require('./config/swagger');
+require('dotenv').config();
 
 
 const app = express();
