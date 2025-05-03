@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test:report": "jest --coverage --testResultsProcessor=jest-junit"
-  },
+  "test": "mocha tests --recursive",
+  "test:ci": "nyc --reporter=lcov --reporter=text --reporter=mocha-junit-reporter mocha tests"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",

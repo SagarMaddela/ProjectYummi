@@ -23,16 +23,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '20'
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests
-        run: npm test -- --coverage --testResultsProcessor="jest-junit"
+      - name: Run tests and generate coverage
+        run: |
+          npm run test:ci
 
       - name: Upload test report
         uses: actions/upload-artifact@v3
         with:
           name: test-report
-          path: reports/test-report.xml
+          path: reports/

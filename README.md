@@ -131,6 +131,9 @@ Contributions are welcome! Feel free to fork the repository and create a pull re
 
 ---
 
+![CI](https://github.com/your-username/your-repo-name/actions/workflows/ci.yml/badge.svg)
+
+
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
