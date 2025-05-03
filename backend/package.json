@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
   "test": "mocha tests --recursive",
-  "test:ci": "nyc --reporter=lcov --reporter=text --reporter=mocha-junit-reporter mocha tests"
+  "test:ci": "nyc --reporter=lcov --reporter=text --reporter=mocha-junit-reporter --reporter-options mochaFile=mocha-test-results.xml mocha tests"
 },
   "keywords": [],
   "author": "",

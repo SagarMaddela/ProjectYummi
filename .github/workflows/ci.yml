@@ -23,17 +23,24 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: '20'
 
       - name: Install dependencies
         run: npm install
 
-      - name: Run tests and generate coverage
-        run: |
-          npm run test:ci
+      - name: Run tests with Mocha and Coverage
+        run: npm run test:ci
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
         with:
           name: test-report
-          path: reports/
+          path: ./mocha-*.xml # Adjust the path to your test report files
+
+      
+      # Upload coverage reports
+      - name: Upload coverage reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
