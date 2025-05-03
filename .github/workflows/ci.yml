@@ -38,9 +38,9 @@ jobs:
           path: ./mocha-*.xml # Adjust the path to your test report files
 
       
-      # Upload coverage reports
-      - name: Upload coverage reports
-        uses: actions/upload-artifact@v4
-        with:
-          name: coverage-report
-          path: coverage/
+      # # Upload coverage reports
+      # - name: Upload coverage reports
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: coverage-report
+      #     path: coverage/

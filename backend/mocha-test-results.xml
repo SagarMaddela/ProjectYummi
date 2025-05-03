@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.688" tests="13" failures="1">
+  <testsuite name="Root Suite" timestamp="2025-05-03T21:05:49" tests="0" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Admin Routes" timestamp="2025-05-03T21:05:49" tests="2" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\admin.test.js" time="0.210" failures="0">
+    <testcase name="Admin Routes should get all users" time="0.016" classname="should get all users">
+    </testcase>
+    <testcase name="Admin Routes should get order list" time="0.033" classname="should get order list">
+    </testcase>
+  </testsuite>
+  <testsuite name="Auth Routes" timestamp="2025-05-03T21:05:50" tests="2" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\auth.test.js" time="0.087" failures="1">
+    <testcase name="Auth Routes should register a new user" time="0.010" classname="should register a new user">
+      <failure message="expected 400 to equal 201" type="AssertionError"><![CDATA[AssertionError: expected 400 to equal 201
+    at Context.<anonymous> (tests\auth.test.js:16:31)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+      + expected - actual
+
+      -400
+      +201
+      ]]></failure>
+    </testcase>
+    <testcase name="Auth Routes should login with correct credentials" time="0.074" classname="should login with correct credentials">
+    </testcase>
+  </testsuite>
+  <testsuite name="Cart Routes" timestamp="2025-05-03T21:05:50" tests="1" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\cart.test.js" time="0.094" failures="0">
+    <testcase name="Cart Routes should get cart items" time="0.016" classname="should get cart items">
+    </testcase>
+  </testsuite>
+  <testsuite name="Restaurant Routes" timestamp="2025-05-03T21:05:50" tests="4" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\restaurant.test.js" time="0.140" failures="0">
+    <testcase name="Restaurant Routes should get restaurant dashboard" time="0.011" classname="should get restaurant dashboard">
+    </testcase>
+    <testcase name="Restaurant Routes should get menu management" time="0.017" classname="should get menu management">
+    </testcase>
+    <testcase name="Restaurant Routes should get analytics" time="0.017" classname="should get analytics">
+    </testcase>
+    <testcase name="Restaurant Routes should get reviews" time="0.013" classname="should get reviews">
+    </testcase>
+  </testsuite>
+  <testsuite name="User Routes" timestamp="2025-05-03T21:05:50" tests="4" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\user.test.js" time="0.144" failures="0">
+    <testcase name="User Routes should fetch restaurants" time="0.029" classname="should fetch restaurants">
+    </testcase>
+    <testcase name="User Routes should get user profile" time="0.010" classname="should get user profile">
+    </testcase>
+    <testcase name="User Routes should get active orders" time="0.016" classname="should get active orders">
+    </testcase>
+    <testcase name="User Routes should get order history" time="0.016" classname="should get order history">
+    </testcase>
+  </testsuite>
+</testsuites>

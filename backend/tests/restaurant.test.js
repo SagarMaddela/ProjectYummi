@@ -4,40 +4,40 @@ const chai = require('chai');
 const expect = chai.expect;
 
 
-describe('User Routes', () => {
+describe('Restaurant Routes', () => {
   let token;
 
   before(async () => {
     const login = await request(app)
       .post('/api/auth/login')
-      .send({ email: 'bhargav@gmail.com', password: 'bhargav@22' });
+      .send({ email: 'bhargav22@gmail.com', password: '12345678' });
     token = login.body.token;
   });
 
-  it('should fetch restaurants', async () => {
+  it('should get restaurant dashboard', async () => {
     const res = await request(app)
-      .get('/api/user/userrestaurants')
+      .get('/api/restaurant/restaurantDash')
       .set('Authorization', `Bearer ${token}`);
     expect(res.statusCode).to.equal(200);
   });
 
-  it('should get user profile', async () => {
+  it('should get menu management', async () => {
     const res = await request(app)
-      .get('/api/user/getprofile')
+      .get('/api/restaurant/menu')
       .set('Authorization', `Bearer ${token}`);
     expect(res.statusCode).to.equal(200);
   });
 
-  it('should get active orders', async () => {
+  it('should get analytics', async () => {
     const res = await request(app)
-      .get('/api/user/activeorders')
+      .get('/api/restaurant/analytics')
       .set('Authorization', `Bearer ${token}`);
     expect(res.statusCode).to.equal(200);
   });
 
-  it('should get order history', async () => {
+  it('should get reviews', async () => {
     const res = await request(app)
-      .get('/api/user/orderhistory')
+      .get('/api/restaurant/reviews')
       .set('Authorization', `Bearer ${token}`);
     expect(res.statusCode).to.equal(200);
   });
