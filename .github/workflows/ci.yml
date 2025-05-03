@@ -28,6 +28,12 @@ jobs:
         with:
           node-version: '20'
 
+      - name: Create .env file
+        run: |
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" > .env
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+
       - name: Install dependencies
         run: npm install
 
