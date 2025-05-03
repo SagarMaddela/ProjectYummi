@@ -17,5 +17,8 @@ const orderSchema = new mongoose.Schema({
     review: { type: mongoose.Schema.Types.ObjectId, ref: 'Review' }, // General review for the order
 }, { timestamps: true });
 
+// Compound Index for better performance on filtering by userId and status
+orderSchema.index({ userId: 1, status: 1 });
+
 const Order = mongoose.model('Order', orderSchema);
 module.exports = Order;

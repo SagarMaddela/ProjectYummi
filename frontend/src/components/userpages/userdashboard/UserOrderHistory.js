@@ -145,7 +145,7 @@ const OrderHistory = () => {
                   <strong>Status:</strong> {order.status}
                 </p>
                 <p>
-                  <strong>Total:</strong> ${order.totalAmount.toFixed(2)}
+                  <strong>Total:</strong>  ₹{(order.totalAmount ?? 0).toFixed(2)}
                 </p>
                 <button
                   onClick={() => handleReOrder(order)}
@@ -213,3 +213,5 @@ const OrderHistory = () => {
 };
 
 export default OrderHistory;
+
+// ${order.totalAmount.toFixed(2)}

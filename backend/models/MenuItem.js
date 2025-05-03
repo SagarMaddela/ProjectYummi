@@ -12,6 +12,9 @@ const menuItemSchema = new mongoose.Schema({
   totalRatings: { type: Number, default: 0 }, // Number of ratings received
 });
 
+// Index for restaurantId to speed up queries
+menuItemSchema.index({ restaurantId: 1 });
+
 // Create the model
 const MenuItem = mongoose.model('MenuItem', menuItemSchema);
 

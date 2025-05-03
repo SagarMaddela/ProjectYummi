@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const Admin = require('../models/Admin');
 const Restaurant = require('../models/Restaurant');
 const Order = require('../models/Order');
+const mongoose = require('mongoose');
+const User = require('../models/User');
 
 exports.registerAdmin = async (req, res) => {
     try {
@@ -54,17 +56,37 @@ exports.registerAdmin = async (req, res) => {
     }
 };
 
+// // Delete a user by ID
+// exports.deleteUser = async (req, res) => {
+//     try {
+//         const user = await User.findByIdAndDelete(req.params.id); // Delete user by ID
+//         if (!user) {
+//             return res.status(404).json({ error: 'User not found' });
+//         }
+//         res.status(200).json({ message: 'User deleted successfully' });
+//     } catch (error) {
+//         res.status(500).json({ error: 'Failed to delete user' });
+//     }
+// };
+
+// Delete a user by ID
 // Delete a user by ID
 exports.deleteUser = async (req, res) => {
-    try {
-        const user = await User.findByIdAndDelete(req.params.id); // Delete user by ID
-        if (!user) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-        res.status(200).json({ message: 'User deleted successfully' });
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to delete user' });
-    }
+  try {
+      // Ensure the ID is a valid ObjectId
+      const userId = new mongoose.Types.ObjectId(req.params.id); // Use 'new' to invoke ObjectId constructor
+      
+      const user = await User.findByIdAndDelete(userId); // Delete user by ID
+      
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+      
+      res.status(200).json({ message: 'User deleted successfully' });
+  } catch (error) {
+      console.error("Error deleting user:", error); // Log the error for debugging
+      res.status(500).json({ error: 'Failed to delete user' });
+  }
 };
 
 exports.getOrders = async (req, res) => {

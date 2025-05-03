@@ -171,7 +171,7 @@ exports.getUserInformation = async (req, res) => {
 
   exports.getOrderHistory = async (req, res) => {
     try {
-    console.log("hello");
+
       // Fetch orders for the logged-in user and populate necessary fields
       console.log(req.user.userId);
       const orders = await Order.find({ user: req.user.userId })
@@ -191,7 +191,7 @@ exports.getUserInformation = async (req, res) => {
       res.status(500).json({ message: "Internal server error" });
     }
   };
-
+  
 
   exports.getActiveOrders = async (req, res) => {
     try {
