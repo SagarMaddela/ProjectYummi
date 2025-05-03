@@ -25,5 +25,6 @@ describe('Auth Routes', () => {
       });
     expect(res.statusCode).to.equal(200);
     expect(res.body).to.have.property('token');
+    console.log('Login Token:', res.body.token); 
   });
 });

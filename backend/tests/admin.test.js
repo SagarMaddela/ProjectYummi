@@ -12,10 +12,11 @@ describe('Admin Routes', () => {
       .post('/api/auth/login')
       .send({ email: 'harish@gmail.com', password: 'harish@22' });
     token = login.body.token;
-    console.log('Token:', token); // Log the token for debugging
   });
 
+   // Log the token for debugging
   it('should get all users', async () => {
+    console.log('Admin-Token:', token);
     const res = await request(app)
       .get('/api/admin/adminuser')
       .set('Authorization', `Bearer ${token}`);
@@ -23,6 +24,7 @@ describe('Admin Routes', () => {
   });
 
   it('should get order list', async () => {
+    console.log('Admin-Token:', token);
     const res = await request(app)
       .get('/api/admin/orders')
       .set('Authorization', `Bearer ${token}`);

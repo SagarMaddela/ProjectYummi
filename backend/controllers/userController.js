@@ -17,7 +17,7 @@ exports.renderUserRestaurants = async (req, res) => {
               ]
           });
 
-      console.log('Fetched restaurants:', restaurants);
+    //   console.log('Fetched restaurants:', restaurants);
 
       res.status(200).json(restaurants);
   } catch (error) {
@@ -31,7 +31,7 @@ exports.renderUserRestaurants = async (req, res) => {
  exports.getRestaurantMenuItems = async (req, res) => {
     try {
         const restaurantId = req.params.id; // Get the restaurant ID from the URL parameters
-        console.log(`Fetching menu for restaurant ID: ${restaurantId}`);
+        // console.log(`Fetching menu for restaurant ID: ${restaurantId}`);
         
         // Find the restaurant by ID and populate its menu items
         const restaurant = await Restaurant.findById(restaurantId).populate('menuItems');
@@ -68,7 +68,7 @@ exports.getCartItems = async (req, res) => {
 
 // Add item to cart
 exports.addItemToCart = async (req, res) => {
-  console.log(1234);
+//   console.log(1234);
   const { itemId, name, description, price, quantity, restaurantId  } = req.body;
   try {
       let cart = await Cart.findOne({ userId: req.user.userId });
@@ -158,7 +158,7 @@ exports.payments = async (req, res) => {
 exports.getUserInformation = async (req, res) => {
     try {
       const user = await User.findOne({ _id: req.user.userId });
-      console.log(user); // Use findOne with async/await
+    //   console.log(user); // Use findOne with async/await
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
@@ -173,7 +173,7 @@ exports.getUserInformation = async (req, res) => {
     try {
 
       // Fetch orders for the logged-in user and populate necessary fields
-      console.log(req.user.userId);
+    //   console.log(req.user.userId);
       const orders = await Order.find({ user: req.user.userId })
         .populate('items.menuItem')  // Populate menu items (use the correct reference)
         .populate('restaurant')  // Populate the restaurant info
@@ -195,7 +195,7 @@ exports.getUserInformation = async (req, res) => {
 
   exports.getActiveOrders = async (req, res) => {
     try {
-        console.log(req.user.userId);
+        // console.log(req.user.userId);
       const activeOrders = await Order.find({ status: { $in: ['Pending'] } , user: req.user.userId  })
       .populate('items.menuItem')  // Populate menu items (use the correct reference)
       .populate('restaurant')  // Populate the restaurant info
@@ -270,7 +270,7 @@ exports.getUserProfile = async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
         // Log the user details for debugging purposes (optional)
-        console.log(user);
+        // console.log(user);
         // Return the user data excluding the password
         res.status(200).json(user);
     } catch (error) {

@@ -14,10 +14,12 @@ describe('User Routes', () => {
     token = login.body.token;
   });
 
+  // Log the token for debugging
   it('should fetch restaurants', async () => {
     const res = await request(app)
       .get('/api/user/userrestaurants')
       .set('Authorization', `Bearer ${token}`);
+      console.log('User-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 
@@ -25,6 +27,7 @@ describe('User Routes', () => {
     const res = await request(app)
       .get('/api/user/getprofile')
       .set('Authorization', `Bearer ${token}`);
+      console.log('User-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 
@@ -32,6 +35,7 @@ describe('User Routes', () => {
     const res = await request(app)
       .get('/api/user/activeorders')
       .set('Authorization', `Bearer ${token}`);
+      console.log('User-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 
@@ -39,6 +43,7 @@ describe('User Routes', () => {
     const res = await request(app)
       .get('/api/user/orderhistory')
       .set('Authorization', `Bearer ${token}`);
+      console.log('User-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 });

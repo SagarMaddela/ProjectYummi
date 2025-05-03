@@ -13,7 +13,7 @@ describe('Cart Routes', () => {
       .send({ email: 'bhargav@gmail.com', password: 'bhargav@22' });
     token = login.body.token;
   });
-
+  // Log the token for debugging
 //   it('should add an item to cart', async () => {
 //     const res = await request(app)
 //       .post('/api/cart/add')
@@ -26,6 +26,7 @@ describe('Cart Routes', () => {
     const res = await request(app)
       .get('/api/cart/menu')
       .set('Authorization', `Bearer ${token}`);
+      console.log('Cart-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 

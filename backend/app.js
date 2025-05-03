@@ -28,8 +28,8 @@ app.use(cors({
    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 }));
 
-app.use(requestLogger);
-app.use(morgan('dev'));
+// app.use(requestLogger);
+// app.use(morgan('dev'));
 
 app.use(express.urlencoded({ extended: false }));
 

@@ -14,10 +14,13 @@ describe('Restaurant Routes', () => {
     token = login.body.token;
   });
 
+  // Log the token for debugging
+
   it('should get restaurant dashboard', async () => {
     const res = await request(app)
       .get('/api/restaurant/restaurantDash')
       .set('Authorization', `Bearer ${token}`);
+      console.log('Restaurant-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 
@@ -25,6 +28,7 @@ describe('Restaurant Routes', () => {
     const res = await request(app)
       .get('/api/restaurant/menu')
       .set('Authorization', `Bearer ${token}`);
+      console.log('Restaurant-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 
@@ -32,6 +36,7 @@ describe('Restaurant Routes', () => {
     const res = await request(app)
       .get('/api/restaurant/analytics')
       .set('Authorization', `Bearer ${token}`);
+      console.log('Restaurant-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 
@@ -39,6 +44,7 @@ describe('Restaurant Routes', () => {
     const res = await request(app)
       .get('/api/restaurant/reviews')
       .set('Authorization', `Bearer ${token}`);
+      console.log('Restaurant-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 });
