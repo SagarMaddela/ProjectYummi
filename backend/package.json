@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node app.js",
     "test": "mocha tests --recursive --exit",
     "test:ci": "mkdir -p reports && nyc --report-dir=coverage --reporter=lcov --reporter=text mocha tests --exit --reporter mocha-junit-reporter --reporter-options mochaFile=mocha-test-results.xml"
   },
