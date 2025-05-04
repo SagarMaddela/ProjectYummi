@@ -16,6 +16,7 @@ require('dotenv').config();
 
 const app = express();
 swaggerDocs(app);
+app.set('trust proxy', 1);
 
 // connectDB();
 
