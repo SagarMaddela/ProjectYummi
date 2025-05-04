@@ -13,16 +13,16 @@ const redisClient = createClient({
 
 redisClient.on('error', err => console.error('Redis Error:', err));
 
-// ✅ Define this function BEFORE exporting
 const connectRedis = async () => {
   try {
     await redisClient.connect();
-    console.log('Connected to Redis Cloud');
+    console.log('✅ Connected to Redis');
   } catch (err) {
-    console.error('Failed to connect to Redis:', err);
+    console.error('❌ Redis connection failed:', err);
   }
 };
 
+// Connect immediately on import
+connectRedis();
 
-module.exports = { redisClient, connectRedis };
-
+module.exports = redisClient; // ✅ Export only the client
