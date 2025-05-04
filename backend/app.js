@@ -24,7 +24,7 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 app.use(cors({
-   origin: 'http://localhost:3000',
+   origin: 'https://project-yummi.vercel.app',
    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 }));
 
