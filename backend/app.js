@@ -11,6 +11,9 @@ const { errorHandler, routenotFoundHandler } = require('./middleware/errorHandle
 const morgan = require('morgan');
 const swaggerDocs = require('./config/swagger');
 require('dotenv').config();
+const { connectRedis } = require('./config/redisClient');
+connectRedis(); // <--- Ensure this is executed during startup
+
 
 
 const app = express();
