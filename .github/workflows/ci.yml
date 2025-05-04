@@ -32,6 +32,10 @@ jobs:
         run: |
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" > .env
           echo "MONGO_URI=${{ secrets.MONGO_URI }}" >> .env
+          echo "REDIS_HOST=${{ secrets.REDIS_HOST }}" >> .env
+          echo "REDIS_PORT=${{ secrets.REDIS_PORT }}" >> .env
+          echo "REDIS_USERNAME=${{ secrets.REDIS_USERNAME }}" >> .env
+          echo "REDIS_PASSWORD=${{ secrets.REDIS_PASSWORD }}" >> .env
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
           MONGO_URI: ${{ secrets.MONGO_URI }}
