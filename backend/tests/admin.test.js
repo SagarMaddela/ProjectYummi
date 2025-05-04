@@ -41,17 +41,4 @@ before(async () => {
     expect(res.statusCode).to.equal(200);
   });
 
-//   it('should get total revenue', async () => {
-//     const res = await request(app)
-//       .get('/api/admin/total-revenue')
-//       .set('Authorization', `Bearer ${token}`);
-//     expect(res.statusCode).to.equal(200);
-//   });
-
-//   it('should get most ordered items', async () => {
-//     const res = await request(app)
-//       .get('/api/admin/most-ordered-items')
-//       .set('Authorization', `Bearer ${token}`);
-//     expect(res.statusCode).to.equal(200);
-//   });
 });
