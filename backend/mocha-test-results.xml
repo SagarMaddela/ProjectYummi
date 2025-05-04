@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="0.747" tests="13" failures="0">
-  <testsuite name="Root Suite" timestamp="2025-05-03T21:29:18" tests="0" time="0.000" failures="0">
+<testsuites name="Mocha Tests" time="5.182" tests="12" failures="1">
+  <testsuite name="Root Suite" timestamp="2025-05-04T09:33:14" tests="0" time="0.000" failures="0">
   </testsuite>
-  <testsuite name="Admin Routes" timestamp="2025-05-03T21:29:18" tests="2" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\admin.test.js" time="0.220" failures="0">
-    <testcase name="Admin Routes should get all users" time="0.016" classname="should get all users">
-    </testcase>
-    <testcase name="Admin Routes should get order list" time="0.032" classname="should get order list">
-    </testcase>
-  </testsuite>
-  <testsuite name="Auth Routes" timestamp="2025-05-03T21:29:18" tests="2" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\auth.test.js" time="0.152" failures="0">
-    <testcase name="Auth Routes should register a new user" time="0.080" classname="should register a new user">
-    </testcase>
-    <testcase name="Auth Routes should login with correct credentials" time="0.072" classname="should login with correct credentials">
+  <testsuite name="Admin Routes" timestamp="2025-05-04T09:33:14" tests="2" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\admin.test.js" time="2.094" failures="1">
+    <testcase name="Admin Routes &quot;before all&quot; hook for &quot;should get all users&quot;" time="2.070" classname="&quot;before all&quot; hook for &quot;should get all users&quot;">
+      <failure message="Timeout of 2000ms exceeded. For async tests and hooks, ensure &quot;done()&quot; is called; if returning a Promise, ensure it resolves. (C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\admin.test.js)" type="Error"><![CDATA[Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\admin.test.js)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)]]></failure>
     </testcase>
   </testsuite>
-  <testsuite name="Cart Routes" timestamp="2025-05-03T21:29:18" tests="1" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\cart.test.js" time="0.091" failures="0">
-    <testcase name="Cart Routes should get cart items" time="0.020" classname="should get cart items">
+  <testsuite name="Auth Routes" timestamp="2025-05-04T09:33:16" tests="1" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\auth.test.js" time="0.331" failures="0">
+    <testcase name="Auth Routes should login with correct credentials" time="0.317" classname="should login with correct credentials">
     </testcase>
   </testsuite>
-  <testsuite name="Restaurant Routes" timestamp="2025-05-03T21:29:18" tests="4" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\restaurant.test.js" time="0.134" failures="0">
-    <testcase name="Restaurant Routes should get restaurant dashboard" time="0.009" classname="should get restaurant dashboard">
-    </testcase>
-    <testcase name="Restaurant Routes should get menu management" time="0.012" classname="should get menu management">
-    </testcase>
-    <testcase name="Restaurant Routes should get analytics" time="0.016" classname="should get analytics">
-    </testcase>
-    <testcase name="Restaurant Routes should get reviews" time="0.015" classname="should get reviews">
+  <testsuite name="Cart Routes" timestamp="2025-05-04T09:33:17" tests="1" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\cart.test.js" time="0.400" failures="0">
+    <testcase name="Cart Routes should get cart items" time="0.168" classname="should get cart items">
     </testcase>
   </testsuite>
-  <testsuite name="User Routes" timestamp="2025-05-03T21:29:18" tests="4" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\user.test.js" time="0.134" failures="0">
-    <testcase name="User Routes should fetch restaurants" time="0.021" classname="should fetch restaurants">
+  <testsuite name="Restaurant Routes" timestamp="2025-05-04T09:33:17" tests="4" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\restaurant.test.js" time="1.324" failures="0">
+    <testcase name="Restaurant Routes should get restaurant dashboard" time="0.160" classname="should get restaurant dashboard">
     </testcase>
-    <testcase name="User Routes should get user profile" time="0.009" classname="should get user profile">
+    <testcase name="Restaurant Routes should get menu management" time="0.203" classname="should get menu management">
     </testcase>
-    <testcase name="User Routes should get active orders" time="0.015" classname="should get active orders">
+    <testcase name="Restaurant Routes should get analytics" time="0.305" classname="should get analytics">
     </testcase>
-    <testcase name="User Routes should get order history" time="0.018" classname="should get order history">
+    <testcase name="Restaurant Routes should get reviews" time="0.206" classname="should get reviews">
+    </testcase>
+  </testsuite>
+  <testsuite name="User Routes" timestamp="2025-05-04T09:33:18" tests="4" file="C:\Users\91889\OneDrive\Desktop\final-project\backend\tests\user.test.js" time="1.030" failures="0">
+    <testcase name="User Routes should fetch restaurants" time="0.211" classname="should fetch restaurants">
+    </testcase>
+    <testcase name="User Routes should get user profile" time="0.159" classname="should get user profile">
+    </testcase>
+    <testcase name="User Routes should get active orders" time="0.211" classname="should get active orders">
+    </testcase>
+    <testcase name="User Routes should get order history" time="0.204" classname="should get order history">
     </testcase>
   </testsuite>
 </testsuites>

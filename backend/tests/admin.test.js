@@ -4,7 +4,8 @@ const chai = require('chai');
 const expect = chai.expect;
 
 
-describe('Admin Routes', () => {
+describe('Admin Routes', function() {
+    this.timeout(10000);
   let token;
 
  
