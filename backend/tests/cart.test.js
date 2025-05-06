@@ -1,7 +1,13 @@
 const request = require('supertest');
 const app = require('../app');
-const chai = require('chai');
-const expect = chai.expect;
+let chai;
+let expect;
+
+before(async () => {
+  // Dynamically import chai
+  chai = await import('chai');
+  expect = chai.expect;
+});
 
 
 describe('Cart Routes', () => {
@@ -15,11 +21,20 @@ describe('Cart Routes', () => {
   });
 
 
+  // it('should get cart items', async () => {
+  //   const res = await request(app)
+  //     .get('/api/cart/menu')
+  //     .set('Authorization', `Bearer ${token}`);
+  //     console.log('Cart-Token:', token);
+  //   expect(res.statusCode).to.equal(200);
+  // });
   it('should get cart items', async () => {
     const res = await request(app)
       .get('/api/cart/menu')
       .set('Authorization', `Bearer ${token}`);
-      console.log('Cart-Token:', token);
+    // console.log('Response Body:', res.body);
+    // console.log('Response Headers:', res.headers);
+    // console.log('Cart-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
 

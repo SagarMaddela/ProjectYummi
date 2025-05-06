@@ -1,7 +1,13 @@
 const request = require('supertest');
 const app = require('../app');
-const chai = require('chai');
-const expect = chai.expect;
+let chai;
+let expect;
+
+before(async () => {
+  // Dynamically import chai
+  chai = await import('chai');
+  expect = chai.expect;
+});
 
 
 describe('User Routes', () => {
