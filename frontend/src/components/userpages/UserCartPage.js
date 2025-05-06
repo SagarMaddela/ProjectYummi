@@ -70,9 +70,9 @@ const Cart = () => {
         navigate('/cart', {
             state: {
                 orderData: {
-                    restaurantName: restaurantName,
+                    restaurantName,
                     restaurantId: cleanRestaurantId,
-                    userId: userId,
+                    userId,
                     items: cart.items.map(item => ({
                         menuItem: item.itemId,
                         quantity: item.quantity,
@@ -81,6 +81,7 @@ const Cart = () => {
                 }
             }
         });
+        
     };
 
     const removeItemFromCart = async (itemId) => {
@@ -111,15 +112,19 @@ const Cart = () => {
                     <ul className="cart-items-list">
                         {cart.items.map((item) => (
                             <li key={item.itemId._id} className="cart-item">
-                                <div className="">
-                                    {item.itemId.image && (
-                                        <img
-                                            src={`${baseURL}/${item.itemId.image}`}
-                                            className="cart-item-image"
-                                            alt={item.name}
-                                        />
-                                    )}
-                                </div>
+                                <div>
+                                        {item.itemId.image?.data?.data && item.itemId.image?.contentType ? (
+                                            <img
+                                                src={`data:${item.itemId.image.contentType};base64,${btoa(
+                                                    String.fromCharCode(...item.itemId.image.data.data)
+                                                )}`}
+                                                className="cart-item-image"
+                                                alt={item.itemId.name}
+                                            />
+                                        ) : (
+                                            <div className="image-placeholder">No Image</div>
+                                        )}
+                                    </div>
                                 <div className="cart-item-details">
                                     <p className="cart-item-name">{item.name}</p>
                                     <p className="cart-item-description">{item.description}</p>
@@ -150,9 +155,11 @@ const Cart = () => {
         </div>
         
            
-    
+
         </div>
     );
 };
 
 export default Cart;
+
+

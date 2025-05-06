@@ -15,6 +15,7 @@ const RestaurantMenu = () => {
     const [cartItems, setCartItems] = useState({});
     const [selectedCategory, setSelectedCategory] = useState('');
     const [foodType, setFoodType] = useState('all');
+    const [imageUrls, setImageUrls] = useState({});
     const token = localStorage.getItem('token');
 
     useEffect(() => {
@@ -52,6 +53,37 @@ const RestaurantMenu = () => {
         fetchMenu();
         fetchCartItems();
     }, [id, token]);
+
+    useEffect(() => {
+        // Fetch images for menu items
+        const fetchImages = async () => {
+            const urls = {};
+            for (const item of menu) {
+                console.log(item.image)
+                if (item.image) {
+                    try {
+                        if (item.image && item.image.data && item.image.contentType){
+                            const base64 = btoa(
+                                item.image.data.data.reduce(
+                                    (data, byte) => data + String.fromCharCode(byte),
+                                    ''
+                                )
+                            );
+                            urls[item._id] = `data:${item.image.contentType};base64,${base64}`;
+
+                        }
+                    } catch (error) {
+                        console.error(`Failed to fetch image for menu item ${item._id}:`, error);
+                    }
+                }
+            }
+            setImageUrls(urls);
+        };
+
+        if (menu.length > 0) {
+            fetchImages();
+        }
+    }, [menu]);
 
     useEffect(() => {
         let filtered = [...menu];
@@ -127,8 +159,6 @@ const RestaurantMenu = () => {
         return <div className="menu-error">{error}</div>;
     }
 
-    const baseURL = 'http://localhost:5000/uploads';
-
     return (
         <div className='restaurant-menu-layout'>
             <UserNavBar/>
@@ -148,34 +178,34 @@ const RestaurantMenu = () => {
                         >
                             <option value="">All</option>
                             <option value="biryani">Biryani</option>
-                                        <option value="pizza">Pizza</option>
-                                        <option value="burgers">Burgers</option>
-                                        <option value="chinese">Chinese</option>
-                                        <option value="south-indian">South Indian</option>
-                                        <option value="north-indian">North Indian</option>
-                                        <option value="italian">Italian</option>
-                                        <option value="mexican">Mexican</option>
-                                        <option value="thai">Thai</option>
-                                        <option value="japanese">Japanese</option>
-                                        <option value="seafood">Seafood</option>
-                                        <option value="bbq-grills">BBQ & Grills</option>
-                                        <option value="street-food">Street Food</option>
-                                        <option value="healthy-food">Healthy Food</option>
-                                        <option value="desserts-sweets">Desserts & Sweets</option>
-                                        <option value="beverages">Beverages</option>
-                                        <option value="salads">Salads</option>
-                                        <option value="wraps-rolls">Wraps & Rolls</option>
-                                        <option value="sandwiches">Sandwiches</option>
-                                        <option value="fast-food">Fast Food</option>
-                                        <option value="vegan-options">Vegan Options</option>
-                                        <option value="vegetarian">Vegetarian</option>
-                                        <option value="non-vegetarian">Non-Vegetarian</option>
-                                        <option value="gluten-free">Gluten-Free</option>
-                                        <option value="keto-friendly">Keto-Friendly</option>
-                                        <option value="family-meals">Family Meals</option>
-                                        <option value="combo-meals">Combo Meals</option>
-                                        <option value="breakfast">Breakfast</option>
-                                        <option value="brunch">Brunch</option>
+                            <option value="pizza">Pizza</option>
+                            <option value="burgers">Burgers</option>
+                            <option value="chinese">Chinese</option>
+                            <option value="south-indian">South Indian</option>
+                            <option value="north-indian">North Indian</option>
+                            <option value="italian">Italian</option>
+                            <option value="mexican">Mexican</option>
+                            <option value="thai">Thai</option>
+                            <option value="japanese">Japanese</option>
+                            <option value="seafood">Seafood</option>
+                            <option value="bbq-grills">BBQ & Grills</option>
+                            <option value="street-food">Street Food</option>
+                            <option value="healthy-food">Healthy Food</option>
+                            <option value="desserts-sweets">Desserts & Sweets</option>
+                            <option value="beverages">Beverages</option>
+                            <option value="salads">Salads</option>
+                            <option value="wraps-rolls">Wraps & Rolls</option>
+                            <option value="sandwiches">Sandwiches</option>
+                            <option value="fast-food">Fast Food</option>
+                            <option value="vegan-options">Vegan Options</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="non-vegetarian">Non-Vegetarian</option>
+                            <option value="gluten-free">Gluten-Free</option>
+                            <option value="keto-friendly">Keto-Friendly</option>
+                            <option value="family-meals">Family Meals</option>
+                            <option value="combo-meals">Combo Meals</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="brunch">Brunch</option>
                         </select>
                     </section>
 
@@ -198,8 +228,8 @@ const RestaurantMenu = () => {
                         <i className="fas fa-utensils"></i> All
                     </button>
                     <Link to={`/cart/restaurantId=${id}`} className="view-cart-link">
-                    <i className="fas fa-shopping-cart"></i> View Cart
-                </Link>
+                        <i className="fas fa-shopping-cart"></i> View Cart
+                    </Link>
                 </div>
 
                 {/* No items message */}
@@ -210,12 +240,14 @@ const RestaurantMenu = () => {
                         {filteredMenu.map(item => (
                             <div key={item._id} className="menu-item-row">
                                 <div className="menu-item-image-wrapper">
-                                    {item.image && (
+                                    {imageUrls[item._id] ? (
                                         <img
-                                            src={`${baseURL}/${item.image}`}
+                                            src={imageUrls[item._id]}
                                             className="menu-item-image"
                                             alt={item.name}
                                         />
+                                    ) : (
+                                        <div className="image-placeholder">No Image</div>
                                     )}
                                 </div>
                                 <div className="menu-item-name">{item.name}</div>
@@ -254,12 +286,10 @@ const RestaurantMenu = () => {
                         ))}
                     </div>
                 )}
-
-                
             </div>
             <div>
-            <Footer/>
-        </div>
+                <Footer/>
+            </div>
         </div>
     );
 };

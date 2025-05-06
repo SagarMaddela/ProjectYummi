@@ -11,10 +11,18 @@ const restaurantSchema = new mongoose.Schema({
     deliveryRadius: { type: Number, required: true },
     businessHours: { type: String, required: true },
     restaurantDescription: { type: String }, // Optional: If needed
-    logo: { type: String },
-    menuImages: [{ type: String }],
-    foodLicense: { type: String },
-    healthCertification: { type: String },
+    logo: {
+        data: { type: Buffer },
+        contentType: { type: String },
+    },
+    foodLicense: {
+        data: { type: Buffer },
+        contentType: { type: String },
+    },
+    healthCertification: {
+        data: { type: Buffer },
+        contentType: { type: String },
+    },
     menuItems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' }], // Reference to MenuItem model
     ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Rating' }],
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],

@@ -24,7 +24,7 @@ app.set('trust proxy', 1);
 if (process.env.NODE_ENV !== 'test') {
     connectDB();
 }
-
+// https://project-yummi.vercel.app
 app.use(cors({
    origin: 'https://project-yummi.vercel.app',
    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
