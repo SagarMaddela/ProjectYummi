@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
-const MenuItem = require('./MenuItem'); // Import the MenuItem model
 
 const restaurantSchema = new mongoose.Schema({
     restaurantName: { type: String, required: true },
     owner: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     phone: { type: String, required: true },
-    password: { type: String, required: true }, // Add password field
+    password: { type: String, required: true },
     address: { type: String, required: true },
     deliveryRadius: { type: Number, required: true },
     businessHours: { type: String, required: true },
-    restaurantDescription: { type: String }, // Optional: If needed
+    restaurantDescription: { type: String },
     logo: {
         data: { type: Buffer },
         contentType: { type: String },
@@ -23,13 +22,19 @@ const restaurantSchema = new mongoose.Schema({
         data: { type: Buffer },
         contentType: { type: String },
     },
-    menuItems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' }], // Reference to MenuItem model
+    menuItems: [{ type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' }],
     ratings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Rating' }],
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
     role: { type: String, default: 'restaurant' },
-    status : { type: String, default: 'pending'},
-    user : [{type:mongoose.Schema.Types.ObjectId, ref : "User" }]
+    status: { type: String, default: 'pending' },
+    user: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }]
 }, { timestamps: true });
+
+// Indexes
+restaurantSchema.index({ email: 1 }, { unique: true });
+restaurantSchema.index({ restaurantName: 1 });
+restaurantSchema.index({ status: 1 });
+restaurantSchema.index({ address: 'text', restaurantName: 'text' }); // For text search
 
 const Restaurant = mongoose.model('Restaurant', restaurantSchema);
 module.exports = Restaurant;

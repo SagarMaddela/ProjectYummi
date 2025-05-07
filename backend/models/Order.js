@@ -1,4 +1,3 @@
-// models/Order.js
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
@@ -8,17 +7,17 @@ const orderSchema = new mongoose.Schema({
         {
             menuItem: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem', required: true },
             quantity: { type: Number, required: true },
-            review: { type: String }, // Optional review for the item
-            rating: { type: Number, min: 1, max: 5 }, // Optional rating for the item
+            review: { type: String },
+            rating: { type: Number, min: 1, max: 5 },
         },
     ],
     totalAmount: { type: Number, required: true },
     status: { type: String, default: "Pending" },
-    review: { type: mongoose.Schema.Types.ObjectId, ref: 'Review' }, // General review for the order
+    review: { type: mongoose.Schema.Types.ObjectId, ref: 'Review' },
 }, { timestamps: true });
 
-// Compound Index for better performance on filtering by userId and status
-orderSchema.index({ userId: 1, status: 1 });
+// ✅ Corrected compound index
+orderSchema.index({ user: 1, status: 1 });
 
 const Order = mongoose.model('Order', orderSchema);
 module.exports = Order;

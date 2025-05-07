@@ -1,4 +1,3 @@
-// models/User.js
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
@@ -11,13 +10,15 @@ const userSchema = new mongoose.Schema({
         state: String,
         pincode: String,
     },
-    phone:{type: Number},
+    phone: { type: Number },
     role: { type: String, enum: ['user', 'admin', 'restaurant'], default: 'user' },
     favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }],
     reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }],
 }, { timestamps: true });
 
-
+// Indexes
+userSchema.index({ email: 1 }, { unique: true });
+userSchema.index({ username: 1 });
 
 const User = mongoose.model('User', userSchema);
 module.exports = User;

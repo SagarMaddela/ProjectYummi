@@ -6,16 +6,22 @@ const menuItemSchema = new mongoose.Schema({
   category: { type: String, required: true },
   description: { type: String, required: true },
   image: {
-    data: { type: Buffer },
-    contentType: { type: String },
+    data: Buffer,
+    contentType: String,
   },
-  foodType : {type:String, required: true},
-  restaurant: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant' }, // Reference to the Restaurant model
-  averageRating: { type: Number, default: 0 }, // Calculated average rating
-  totalRatings: { type: Number, default: 0 }, // Number of ratings received
+  foodType: { type: String, required: true },
+  restaurant: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Restaurant',
+    index: true // 🔍 Index on restaurant
+  },
+  averageRating: { type: Number, default: 0 },
+  totalRatings: { type: Number, default: 0 },
 });
 
-// Create the model
-const MenuItem = mongoose.model('MenuItem', menuItemSchema);
+// 🔍 Index frequently searched fields
+menuItemSchema.index({ name: 1 });
+menuItemSchema.index({ category: 1 });
 
-module.exports = MenuItem; // Export the model
+const MenuItem = mongoose.model('MenuItem', menuItemSchema);
+module.exports = MenuItem;

@@ -4,63 +4,34 @@ const cartSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
-        ref: 'User', // Reference to User model
+        ref: 'User',
+        index: true // 🔍 Index userId
     },
     items: [
         {
             itemId: {
                 type: mongoose.Schema.Types.ObjectId,
                 required: true,
-                ref: 'MenuItem', // Reference to MenuItem model
-            },
-            name: {
-                type: String,
-                required: true,
-            },
-            description: {
-                type: String,
-                required: true,
-            },
-            price: {
-                type: Number,
-                required: true,
-            },
-            quantity: {
-                type: Number,
-                required: true,
-                default: 1, // Default quantity if not specified
+                ref: 'MenuItem'
             },
             restaurantId: {
                 type: mongoose.Schema.Types.ObjectId,
                 required: true,
-                ref: 'Restaurant', // Reference to Restaurant model
+                ref: 'Restaurant',
+                index: true // 🔍 Index inside embedded array
             },
-            addedAt: {
-                type: Date,
-                default: Date.now, // Timestamp when the item was added
-            },
-            specialInstructions: {
-                type: String,
-                default: '', // To allow users to add any special instructions for the item
-            },
-            imageUrl: {
-                type: String,
-                default: '', // URL for the item image
-            },
+            name: String,
+            description: String,
+            price: Number,
+            quantity: { type: Number, default: 1 },
+            addedAt: { type: Date, default: Date.now },
+            specialInstructions: { type: String, default: '' },
+            imageUrl: { type: String, default: '' },
         },
     ],
-    totalAmount: {
-        type: Number,
-        default: 0, // Total amount of the cart
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now, // Timestamp for when the cart was created
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now, // Timestamp for when the cart was last updated
-    },
+    totalAmount: { type: Number, default: 0 },
+    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, default: Date.now },
 });
 
 // Middleware to update the `updatedAt` field
@@ -70,5 +41,4 @@ cartSchema.pre('save', function (next) {
 });
 
 const Cart = mongoose.model('Cart', cartSchema);
-
 module.exports = Cart;

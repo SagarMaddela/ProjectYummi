@@ -7,7 +7,13 @@ const PaymentSchema = new mongoose.Schema({
     paymentMethod: { type: String, required: true },
     transactionId: { type: String, required: true },
     paymentStatus: { type: String, enum: ['completed', 'failed'], required: true },
-    deliveryAddress : {type: String}
+    deliveryAddress: { type: String }
 }, { timestamps: true });
 
-module.exports = mongoose.model('Payment', PaymentSchema);
+// Indexes
+PaymentSchema.index({ orderId: 1 }, { unique: true }); // One payment per order
+PaymentSchema.index({ userId: 1 }); // User payment history
+PaymentSchema.index({ transactionId: 1 }, { unique: true }); // Ensure uniqueness
+
+const Payment = mongoose.model('Payment', PaymentSchema);
+module.exports = Payment;
