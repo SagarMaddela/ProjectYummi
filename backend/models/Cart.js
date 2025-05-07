@@ -5,7 +5,7 @@ const cartSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'User',
-        index: true // 🔍 Index userId
+        // index: true // 🔍 Index userId
     },
     items: [
         {
@@ -18,7 +18,7 @@ const cartSchema = new mongoose.Schema({
                 type: mongoose.Schema.Types.ObjectId,
                 required: true,
                 ref: 'Restaurant',
-                index: true // 🔍 Index inside embedded array
+                // index: true // 🔍 Index inside embedded array
             },
             name: String,
             description: String,
