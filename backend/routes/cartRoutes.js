@@ -63,7 +63,7 @@ const authenticateToken = require('../middleware/authenticateToken');
 
 /**
  * @swagger
- * /cart/menu:
+ * /api/cart/menu:
  *   get:
  *     summary: Retrieve cart items
  *     description: Gets the list of items in the user's cart along with total amount.

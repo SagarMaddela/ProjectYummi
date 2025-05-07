@@ -34,6 +34,7 @@ const options = {
 };
 
 const swaggerSpec = swaggerJsdoc(options);
+console.log(JSON.stringify(swaggerSpec, null, 2));
 
 const swaggerDocs = (app) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));

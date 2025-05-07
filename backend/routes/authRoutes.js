@@ -15,7 +15,7 @@ router.use(authLimiter);
 
 /**
  * @swagger
- * /auth/signup:
+ * auth/signup:
  *   post:
  *     summary: Register a new user
  *     tags: [Authentication]
