@@ -11,14 +11,14 @@ const options = {
     },
     servers: [
       {
-        url: 'https://projectyummi-web-service.onrender.com/',
-        description: 'Local Development Server',
+        url: 'https://projectyummi-web-service.onrender.com/api',
+        description: 'Production Server',
       },
     ],
     components: {
         securitySchemes: {
             BearerAuth: {
-                type: "http",
+                type: "https",
                 scheme: "bearer",
                 bearerFormat: "JWT", // Indicating it's a JWT token
             },
