@@ -6,330 +6,258 @@ const authenticateToken = require('../middleware/authenticateToken');
 /**
  * @swagger
  * tags:
- *   name: Users
- *   description: User-related API routes
- */
-
-/**
- * @swagger
+ *   - name: User
+ *     description: Endpoints for user operations
+ *
  * components:
+ *   securitySchemes:
+ *     bearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
  *   schemas:
- *     Order:
+ *     Address:
+ *       type: object
+ *       properties:
+ *         street:
+ *           type: string
+ *         city:
+ *           type: string
+ *         state:
+ *           type: string
+ *         pincode:
+ *           type: string
+ *     ReviewInput:
  *       type: object
  *       required:
- *         - user
- *         - restaurant
- *         - items
- *         - totalAmount
+ *         - orderId
+ *         - rating
  *       properties:
- *         user:
+ *         orderId:
  *           type: string
- *           description: ID of the user who placed the order
- *         restaurant:
+ *         rating:
+ *           type: number
+ *         reviewText:
  *           type: string
- *           description: ID of the restaurant
- *         items:
+ *         images:
  *           type: array
  *           items:
- *             type: object
- *             properties:
- *               menuItem:
- *                 type: string
- *                 description: ID of the menu item
- *               quantity:
- *                 type: number
- *                 description: Quantity of the item
- *               review:
- *                 type: string
- *                 description: Review for the item
- *               rating:
- *                 type: number
- *                 minimum: 1
- *                 maximum: 5
- *                 description: Rating for the item
- *         totalAmount:
- *           type: number
- *           description: Total amount of the order
- *         status:
- *           type: string
- *           default: "Pending"
- *           description: Status of the order
- *         createdAt:
- *           type: string
- *           format: date-time
- *           description: Order creation timestamp
- *         updatedAt:
- *           type: string
- *           format: date-time
- *           description: Order update timestamp
- *     Restaurant:
+ *             type: string
+ *     UpdateProfile:
  *       type: object
- *       required:
- *         - restaurantName
- *         - owner
- *         - email
- *         - phone
- *         - password
- *         - address
- *         - deliveryRadius
- *         - businessHours
  *       properties:
- *         restaurantName:
+ *         username:
  *           type: string
- *           description: Name of the restaurant
- *         owner:
- *           type: string
- *           description: Name of the restaurant owner
  *         email:
  *           type: string
- *           description: Restaurant email
  *         phone:
  *           type: string
- *           description: Restaurant phone number
- *         password:
- *           type: string
- *           description: Restaurant password
  *         address:
- *           type: string
- *           description: Restaurant address
- *         deliveryRadius:
- *           type: number
- *           description: Delivery radius in kilometers
- *         businessHours:
- *           type: string
- *           description: Business hours of the restaurant
- *         restaurantDescription:
- *           type: string
- *           description: Description of the restaurant
- *         menuItems:
- *           type: array
- *           items:
- *             type: string
- *             description: IDs of menu items
- *         ratings:
- *           type: array
- *           items:
- *             type: string
- *             description: IDs of ratings
- *         reviews:
- *           type: array
- *           items:
- *             type: string
- *             description: IDs of reviews
- *         role:
- *           type: string
- *           default: 'restaurant'
- *           description: Role of the entity
- *         status:
- *           type: string
- *           default: 'pending'
- *           description: Status of the restaurant
- *         createdAt:
- *           type: string
- *           format: date-time
- *           description: Restaurant creation timestamp
- *         updatedAt:
- *           type: string
- *           format: date-time
- *           description: Restaurant update timestamp
- *     MenuItem:
+ *           $ref: '#/components/schemas/Address'
+ *     UpdateQuantity:
  *       type: object
  *       required:
- *         - name
- *         - price
- *         - category
- *         - description
- *         - foodType
- *         - restaurant
+ *         - itemId
+ *         - quantity
  *       properties:
- *         name:
+ *         itemId:
  *           type: string
- *           description: Name of the menu item
- *         price:
+ *         quantity:
  *           type: number
- *           description: Price of the menu item
- *         category:
- *           type: string
- *           description: Category of the menu item
- *         description:
- *           type: string
- *           description: Description of the menu item
- *         foodType:
- *           type: string
- *           description: Type of food (e.g., veg, non-veg)
- *         restaurant:
- *           type: string
- *           description: ID of the restaurant
- *         averageRating:
- *           type: number
- *           default: 0
- *           description: Average rating of the menu item
- *         totalRatings:
- *           type: number
- *           default: 0
- *           description: Total number of ratings
- *         createdAt:
- *           type: string
- *           format: date-time
- *           description: Menu item creation timestamp
- *         updatedAt:
- *           type: string
- *           format: date-time
- *           description: Menu item update timestamp
  */
 
 /**
  * @swagger
- * /user/userrestaurants:
+ * /api/user/userrestaurants:
  *   get:
- *     summary: Get a list of restaurants
- *     tags: [Users]
+ *     tags: [User]
+ *     summary: Get all accepted restaurants with menu and reviews
  *     responses:
  *       200:
- *         description: Successfully retrieved restaurant list
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Restaurant'
+ *         description: List of restaurants
  *       500:
  *         description: Server error
  */
 
 /**
  * @swagger
- * /user/{id}/menu:
+ * /api/user/{id}/menu:
  *   get:
- *     summary: Get menu items for a restaurant
- *     tags: [Users]
+ *     tags: [User]
+ *     summary: Get menu items for a specific restaurant
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
- *         description: Restaurant ID
  *         schema:
  *           type: string
+ *         description: Restaurant ID
  *     responses:
  *       200:
- *         description: Successfully retrieved menu items
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/MenuItem'
+ *         description: List of menu items
  *       404:
  *         description: Restaurant not found
- *       500:
- *         description: Server error
  */
 
 /**
  * @swagger
- * /user/orderhistory:
+ * /api/user/getUser:
  *   get:
- *     summary: Get order history of the user
- *     tags: [Users]
+ *     tags: [User]
+ *     summary: Get logged-in user information
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Successfully retrieved order history
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Order'
- *       401:
- *         description: Unauthorized
- *       500:
- *         description: Server error
+ *         description: User information
+ *       404:
+ *         description: User not found
  */
 
 /**
  * @swagger
- * /user/activeorders:
+ * /api/user/orderhistory:
  *   get:
- *     summary: Get active orders of the user
- *     tags: [Users]
+ *     tags: [User]
+ *     summary: Get user's order history
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Successfully retrieved active orders
- *         content:
- *           application/json:
- *             schema:
- *               type: array
- *               items:
- *                 $ref: '#/components/schemas/Order'
- *       401:
- *         description: Unauthorized
- *       500:
- *         description: Server error
+ *         description: List of past orders
  */
 
 /**
  * @swagger
- * /user/cancelorder/{orderId}:
+ * /api/user/activeorders:
+ *   get:
+ *     tags: [User]
+ *     summary: Get user's active orders
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of active orders
+ */
+
+/**
+ * @swagger
+ * /api/user/cancelorder/{orderId}:
  *   patch:
- *     summary: Cancel an order
- *     tags: [Users]
- *     security:
- *       - BearerAuth: []
+ *     tags: [User]
+ *     summary: Cancel a specific order
  *     parameters:
  *       - in: path
  *         name: orderId
  *         required: true
- *         description: Order ID
  *         schema:
  *           type: string
  *     responses:
  *       200:
- *         description: Successfully canceled order
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Order'
- *       400:
- *         description: Invalid request
- *       401:
- *         description: Unauthorized
+ *         description: Order cancelled
  *       404:
  *         description: Order not found
- *       500:
- *         description: Server error
  */
 
 /**
  * @swagger
- * /user/getprofile:
+ * /api/user/getprofile:
  *   get:
+ *     tags: [User]
  *     summary: Get user profile
- *     tags: [Users]
  *     security:
- *       - BearerAuth: []
+ *       - bearerAuth: []
  *     responses:
  *       200:
- *         description: Successfully retrieved profile
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 id:
- *                   type: string
- *                 username:
- *                   type: string
- *                 email:
- *                   type: string
- *       401:
- *         description: Unauthorized
- *       500:
- *         description: Server error
+ *         description: User profile data
  */
+
+/**
+ * @swagger
+ * /api/user/updateprofile:
+ *   put:
+ *     tags: [User]
+ *     summary: Update user profile
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UpdateProfile'
+ *     responses:
+ *       200:
+ *         description: Profile updated
+ *       400:
+ *         description: Email already in use
+ */
+
+/**
+ * @swagger
+ * /api/user/submitreview:
+ *   put:
+ *     tags: [User]
+ *     summary: Submit a review for a completed order
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ReviewInput'
+ *     responses:
+ *       201:
+ *         description: Review submitted
+ *       400:
+ *         description: Validation error
+ *       403:
+ *         description: Unauthorized
+ */
+
+/**
+ * @swagger
+ * /api/user/updatequantity:
+ *   put:
+ *     tags: [User]
+ *     summary: Update quantity of an item in the cart
+ *     security:
+ *       - bearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UpdateQuantity'
+ *     responses:
+ *       200:
+ *         description: Updated cart
+ *       404:
+ *         description: Cart or item not found
+ */
+
+/**
+ * @swagger
+ * /api/user/deleteorder/{orderId}:
+ *   delete:
+ *     tags: [User]
+ *     summary: Delete an order by ID
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: orderId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Order deleted
+ *       404:
+ *         description: Order not found
+ */
+
 
 router.get('/userrestaurants', userController.renderUserRestaurants);
 router.get('/:id/menu', userController.getRestaurantMenuItems);
