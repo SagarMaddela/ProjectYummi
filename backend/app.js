@@ -26,7 +26,7 @@ if (process.env.NODE_ENV !== 'test') {
 }
 // https://project-yummi.vercel.app
 app.use(cors({
-   origin: 'https://project-yummi.vercel.app',
+   origin: 'https://project-yummi.vercel.app', // Replace with your frontend URL
    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 }));
 
