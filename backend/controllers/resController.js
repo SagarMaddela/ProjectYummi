@@ -9,8 +9,8 @@ const redisClient = require('../config/redisClient'); // Ensure this is correctl
 // Helper function to invalidate cache
 const invalidateCache = async (restaurantId) => {
   try {
-    await redisClient.del(`restaurant:${restaurantId}:dashboard`);
-    await redisClient.del(`restaurant:${restaurantId}:analytics`);
+    await redisClient.del(restaurant:${restaurantId}:dashboard);
+    await redisClient.del(restaurant:${restaurantId}:analytics);
   } catch (err) {
     console.error('Error invalidating cache:', err);
   }
@@ -102,7 +102,7 @@ exports.createRestaurant = async (req, res) => {
       // Create and save menu items
       const savedMenuItems = await Promise.all(
           (parsedMenuItems || []).map(async (item, index) => {
-              const menuItemImage = menuItemImages[`menuItems[${index}][image]`]?.[0];
+              const menuItemImage = menuItemImages[menuItems[${index}][image]]?.[0];
               const menuItem = new MenuItem({
                   restaurant: restaurant._id,
                   name: item.name,
@@ -142,14 +142,21 @@ exports.renderDashboard = async (req, res) => {
       return res.status(400).send('Invalid restaurant ID');
     }
 
-    const cacheKey = `restaurant:${restaurantId}:dashboard`;
+    const cacheKey = restaurant:${restaurantId}:dashboard;
+
+    console.time('RedisFetchTime:dashboard');
     const cachedData = await redisClient.get(cacheKey);
+    console.timeEnd('RedisFetchTime:dashboard');
 
     if (cachedData) {
+      console.log('Data fetched from Redis cache');
       return res.json(JSON.parse(cachedData));
     }
 
+    console.time('MongoFetchTime:dashboard');
     const restaurant = await Restaurant.findById(restaurantId);
+    console.timeEnd('MongoFetchTime:dashboard');
+
     if (!restaurant) {
       return res.status(404).send('Restaurant not found');
     }
@@ -158,8 +165,8 @@ exports.renderDashboard = async (req, res) => {
       restaurant.menuItems = [];
     }
 
-    await redisClient.setEx(cacheKey, 300, JSON.stringify(restaurant));
- // Cache for 5 minutes
+    await redisClient.setEx(cacheKey, 300, JSON.stringify(restaurant)); // Cache for 5 minutes
+    console.log('Data fetched from MongoDB and cached');
 
     res.json(restaurant);
   } catch (error) {
@@ -332,44 +339,38 @@ exports.updateOrderStatus = async (req, res) => {
 
 exports.analytics = async (req, res) => {
   const restaurantId = req.user.userId;
-  const cacheKey = `restaurant:${restaurantId}:analytics`;
+  const cacheKey = restaurant:${restaurantId}:analytics;
 
   try {
+    console.time('RedisFetchTime:analytics');
     const cached = await redisClient.get(cacheKey);
-    if (cached) return res.json(JSON.parse(cached));
+    console.timeEnd('RedisFetchTime:analytics');
 
-    const restaurant = await Restaurant.findById(restaurantId)
-      .populate('reviews')
-      .populate('menuItems');
-
-    if (!restaurant) {
-      return res.status(404).json({ error: 'Restaurant not found.' });
+    if (cached) {
+      console.log('Analytics fetched from Redis cache');
+      return res.json(JSON.parse(cached));
     }
 
-    const totalReviews = restaurant.reviews.length;
-    const averageRating =
-      restaurant.reviews.reduce((acc, review) => acc + review.rating, 0) / totalReviews || 0;
+    console.time('MongoFetchTime:analytics');
+    const restaurant = await Restaurant.findById(restaurantId)
+      .populate('menuItems')
+      .lean();
+    console.timeEnd('MongoFetchTime:analytics');
 
-    const popularItems = await MenuItem.find({ restaurant: restaurantId })
-      .sort({ totalRatings: -1 })
-      .limit(5)
-      .select('name totalRatings');
+    if (!restaurant) {
+      return res.status(404).json({ message: 'Restaurant not found' });
+    }
 
-    const analyticsData = {
-      totalReviews,
-      averageRating,
-      popularItems,
-    };
+    await redisClient.setEx(cacheKey, 300, JSON.stringify(restaurant));
+    console.log('Analytics fetched from MongoDB and cached');
 
-    await redisClient.set(cacheKey, JSON.stringify(analyticsData));
- // Cache for 10 minutes
-
-    res.json(analyticsData);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to fetch analytics data.' });
+    res.json(restaurant);
+  } catch (error) {
+    console.error('Error fetching analytics:', error);
+    res.status(500).json({ message: 'Server Error' });
   }
 };
+
 
 exports.reviews = async (req, res) => {
   const restaurantId = req.user.userId;
