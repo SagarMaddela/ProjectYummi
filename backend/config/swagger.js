@@ -12,6 +12,7 @@ const options = {
     servers: [
       {
         url: 'https://projectyummi-web-service.onrender.com/api',
+        // url: 'http://localhost:5000/api',
         description: 'Production Server',
       },
     ],
@@ -34,7 +35,7 @@ const options = {
 };
 
 const swaggerSpec = swaggerJsdoc(options);
-console.log(JSON.stringify(swaggerSpec, null, 2));
+// console.log(JSON.stringify(swaggerSpec, null, 2));
 
 const swaggerDocs = (app) => {
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
