@@ -7,7 +7,7 @@ const orderSchema = new mongoose.Schema({
         {
             menuItem: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem', required: true },
             quantity: { type: Number, required: true },
-            review: { type: String },
+            review: String,
             rating: { type: Number, min: 1, max: 5 },
         },
     ],
@@ -16,7 +16,6 @@ const orderSchema = new mongoose.Schema({
     review: { type: mongoose.Schema.Types.ObjectId, ref: 'Review' },
 }, { timestamps: true });
 
-// ✅ Corrected compound index
 orderSchema.index({ user: 1, status: 1 });
 
 const Order = mongoose.model('Order', orderSchema);

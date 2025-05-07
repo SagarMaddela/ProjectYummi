@@ -1,25 +1,11 @@
 const mongoose = require('mongoose');
 
 const cartSchema = new mongoose.Schema({
-    userId: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User',
-        // index: true // 🔍 Index userId
-    },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true, index: true },
     items: [
         {
-            itemId: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-                ref: 'MenuItem'
-            },
-            restaurantId: {
-                type: mongoose.Schema.Types.ObjectId,
-                required: true,
-                ref: 'Restaurant',
-                // index: true // 🔍 Index inside embedded array
-            },
+            itemId: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem', required: true },
+            restaurantId: { type: mongoose.Schema.Types.ObjectId, ref: 'Restaurant', required: true },
             name: String,
             description: String,
             price: Number,
@@ -30,11 +16,8 @@ const cartSchema = new mongoose.Schema({
         },
     ],
     totalAmount: { type: Number, default: 0 },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
-});
+}, { timestamps: true });
 
-// Middleware to update the `updatedAt` field
 cartSchema.pre('save', function (next) {
     this.updatedAt = Date.now();
     next();
