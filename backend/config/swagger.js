@@ -12,7 +12,7 @@ const options = {
     servers: [
       {
         url: 'https://projectyummi-web-service.onrender.com/api',
-        // url: 'http://localhost:5000/api',
+        // url: 'http://localhost:5000/',
         description: 'Production Server',
       },
     ],
