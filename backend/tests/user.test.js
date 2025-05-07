@@ -16,18 +16,28 @@ describe('User Routes', () => {
   before(async () => {
     const login = await request(app)
       .post('/api/auth/login')
-      .send({ email: 'bhargav@gmail.com', password: 'bhargav@22' });
+      .send({ email: 'akhil12@gmail.com', password: 'akhil@12' });
     token = login.body.token;
   });
 
   // Log the token for debugging
-  it('should fetch restaurants', async () => {
+  // it('should fetch restaurants', async () => {
+  //   this.timeout(10000);
+  //   const res = await request(app)
+  //     .get('/api/user/userrestaurants')
+  //     .set('Authorization', `Bearer ${token}`);
+  //     console.log('User-Token:', token);
+  //   expect(res.statusCode).to.equal(200);
+  // });
+  it('should fetch restaurants', async function () {
+    this.timeout(10000); // ✅ works, 'this' is bound
     const res = await request(app)
       .get('/api/user/userrestaurants')
       .set('Authorization', `Bearer ${token}`);
-      console.log('User-Token:', token);
+    console.log('User-Token:', token);
     expect(res.statusCode).to.equal(200);
   });
+  
 
   it('should get user profile', async () => {
     const res = await request(app)

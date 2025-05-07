@@ -16,7 +16,7 @@ describe('Restaurant Routes', () => {
   before(async () => {
     const login = await request(app)
       .post('/api/auth/login')
-      .send({ email: 'vegas@gmail.com', password: 'vegas@1' });
+      .send({ email: 'redcafe@gmail.com', password: 'redcafe@1' });
     token = login.body.token;
   });
 

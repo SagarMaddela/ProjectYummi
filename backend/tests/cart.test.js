@@ -16,7 +16,7 @@ describe('Cart Routes', () => {
   before(async () => {
     const login = await request(app)
       .post('/api/auth/login')
-      .send({ email: 'bhargav@gmail.com', password: 'bhargav@22' });
+      .send({ email: 'akhil12@gmail.com', password: 'akhil@12' });
     token = login.body.token;
   });
 
