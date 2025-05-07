@@ -9,8 +9,8 @@ const redisClient = require('../config/redisClient'); // Ensure this is correctl
 // Helper function to invalidate cache
 const invalidateCache = async (restaurantId) => {
   try {
-    await redisClient.del(restaurant:${restaurantId}:dashboard);
-    await redisClient.del(restaurant:${restaurantId}:analytics);
+    await redisClient.del(`restaurant:${restaurantId}:dashboard`);
+    await redisClient.del(`restaurant:${restaurantId}:analytics`);
   } catch (err) {
     console.error('Error invalidating cache:', err);
   }
@@ -102,7 +102,7 @@ exports.createRestaurant = async (req, res) => {
       // Create and save menu items
       const savedMenuItems = await Promise.all(
           (parsedMenuItems || []).map(async (item, index) => {
-              const menuItemImage = menuItemImages[menuItems[${index}][image]]?.[0];
+              const menuItemImage = menuItemImages[`menuItems[${index}][image]`]?.[0];
               const menuItem = new MenuItem({
                   restaurant: restaurant._id,
                   name: item.name,
@@ -142,7 +142,7 @@ exports.renderDashboard = async (req, res) => {
       return res.status(400).send('Invalid restaurant ID');
     }
 
-    const cacheKey = restaurant:${restaurantId}:dashboard;
+    const cacheKey = `restaurant:${restaurantId}:dashboard`;
 
     console.time('RedisFetchTime:dashboard');
     const cachedData = await redisClient.get(cacheKey);
@@ -339,7 +339,7 @@ exports.updateOrderStatus = async (req, res) => {
 
 exports.analytics = async (req, res) => {
   const restaurantId = req.user.userId;
-  const cacheKey = restaurant:${restaurantId}:analytics;
+  const cacheKey = `restaurant:${restaurantId}:analytics`;
 
   try {
     console.time('RedisFetchTime:analytics');
