@@ -158,7 +158,8 @@ exports.renderDashboard = async (req, res) => {
       restaurant.menuItems = [];
     }
 
-    await redisClient.setEx(cacheKey, 300, JSON.stringify(restaurant)); // Cache for 5 minutes
+    await redisClient.setEx(cacheKey, 300, JSON.stringify(restaurant));
+ // Cache for 5 minutes
 
     res.json(restaurant);
   } catch (error) {
@@ -360,7 +361,8 @@ exports.analytics = async (req, res) => {
       popularItems,
     };
 
-    await redisClient.setEx(cacheKey, 600, JSON.stringify(analyticsData)); // Cache for 10 minutes
+    await redisClient.set(cacheKey, JSON.stringify(analyticsData));
+ // Cache for 10 minutes
 
     res.json(analyticsData);
   } catch (err) {
